@@ -8,7 +8,7 @@ import { PassportModule } from '@nestjs/passport';
 
 @Module({
     imports: [
-        PassportModule.resgister({ defaultStrategy: 'jwt', session: false }),
+        PassportModule.register({ defaultStrategy: 'jwt', session: false }),
         JwtModule.register({
             secretOrPrivateKey: 'thisisaverygoodsecretkey',
             signOptions: {

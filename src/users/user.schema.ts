@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
+import { IUser } from './interface/user.interface';
 
 export const UserSchema = new mongoose.Schema({
     email: {
@@ -13,7 +14,7 @@ export const UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.pre('save', function(next){
+UserSchema.pre<IUser>('save', function(next){
     let user = this;
 
     if(!user.isModified('password')) return next();
@@ -29,11 +30,7 @@ UserSchema.pre('save', function(next){
     })
 })
 
-UserSchema.methods.chechPassword = function(attempt, callback){
-    let user = this;
+UserSchema.methods.comparePassword = function(attempt, callback){
 
-    bcrypt.compare(attempt, user.password, (err, isMatch) => {
-        if(err) return callback(err);
-        callback(null, isMatch);
-    });
-};
+    return callback(null, bcrypt.compareSync(attempt, this.password));
+}; 

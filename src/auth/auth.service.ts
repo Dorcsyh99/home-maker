@@ -9,27 +9,27 @@ export class AuthService {
     constructor(private userService: UserService, private jwtService: JwtService) {}
 
     async validateUserByPassword(loginAttempt: CreateUserDto) {
-        let userToAttempt = await this.userService.finOneByEmail(loginAttempt.email);
+        let userToAttempt = await this.userService.findOneByEmail(loginAttempt.email);
 
         return new Promise((resolve) => {
-            userToAttempt.chechPassword(loginAttempt.password, (err, isMatch) => {
+            userToAttempt.checkPassword(loginAttempt.password, (err, isMatch) => {
 
                 if(err) throw new UnauthorizedException();
 
                 if(isMatch) {
-                    resolve(this.createJwtPayload(userToAttempt));
+                    resolve(this.createdJwtPayload(userToAttempt));
                 } else {
                     throw new UnauthorizedException();
                 }
             });
         });
-    }
+    } 
 
     async validateUserByJwt(payload: JwtPayload) {
         let user = await this.userService.findOneByEmail(payload.email);
 
         if(user){
-            return this.createJwtPayload(user);
+            return this.createdJwtPayload(user);
         } else {
             throw new UnauthorizedException();
         }

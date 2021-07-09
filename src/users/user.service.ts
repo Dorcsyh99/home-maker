@@ -15,7 +15,7 @@ export class UserService {
         return await createdUser.save();
     }
 
-    async finOneByEmail(email): Model<User> {
+    async findOneByEmail(email): Promise<User> {
         return await this.userModel.findOne({email: email});
     }
 }

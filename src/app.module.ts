@@ -4,20 +4,14 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { HomesModule} from './homes/homes.module';
-import { PreauthMiddleware } from './auth/preauth.middleware';
-import { AuthController } from './auth/auth/auth.controller';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/user.module';
 
 @Module({
-  imports: [HomesModule,
+  imports: [HomesModule, AuthModule, UsersModule,
   MongooseModule.forRoot("mongodb+srv://Admin:Admin@cluster0.fwp6n.azure.mongodb.net/home-maker?retryWrites=true&w=majority"),
   ],
-  controllers: [AppController, AuthController],
+  controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(PreauthMiddleware).forRoutes({
-      path: '*', method: RequestMethod.ALL
-    });
-  }
-}
+export class AppModule {}
