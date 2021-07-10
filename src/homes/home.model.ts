@@ -1,10 +1,13 @@
 import {Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, } from 'mongoose';
+import * as mongoose from 'mongoose';
+import { User } from 'src/auth/interfaces/user.interface';
 
 export type HomeDocument = Home & Document;
 
 @Schema()
 export class Home {
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User'})
+  uploader: User;
   @Prop()
   city: string;
   @Prop()
@@ -14,4 +17,3 @@ export class Home {
 }
 
 export const HomeSchema = SchemaFactory.createForClass(Home);
-

@@ -1,50 +1,63 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { CreateUserDto } from '../users/dto/create-user.dto';
-import { UserService } from '../users/user.service';
-import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { InjectModel } from '@nestjs/mongoose';
+import * as bcrypt from 'bcrypt';
+import { Model } from 'mongoose';
+
+import { AuthCredentialsDto } from './dto/auth-credentials.dto';
+import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class AuthService {
-    constructor(private userService: UserService, private jwtService: JwtService) {}
+    constructor(@InjectModel('User') private userModel: Model<User>,
+    private jwtService: JwtService) {}
 
-    async validateUserByPassword(loginAttempt: CreateUserDto) {
-        let userToAttempt = await this.userService.findOneByEmail(loginAttempt.email);
+    async signUp(authCredentials: AuthCredentialsDto): Promise<void> {
+        const { username, password } = authCredentials;
 
-        return new Promise((resolve) => {
-            userToAttempt.checkPassword(loginAttempt.password, (err, isMatch) => {
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-                if(err) throw new UnauthorizedException();
+        const user = new this.userModel({ username, password: hashedPassword});
 
-                if(isMatch) {
-                    resolve(this.createdJwtPayload(userToAttempt));
-                } else {
-                    throw new UnauthorizedException();
-                }
-            });
-        });
-    } 
-
-    async validateUserByJwt(payload: JwtPayload) {
-        let user = await this.userService.findOneByEmail(payload.email);
-
-        if(user){
-            return this.createdJwtPayload(user);
-        } else {
-            throw new UnauthorizedException();
+        try {
+            await user.save();
+        } catch (error) {
+            if (error.code == 11000) {
+                throw new ConflictException('User already exists');
+            }
+            throw error;
         }
     }
 
-    createdJwtPayload(user){
-        let data: JwtPayload = {
-            email: user.email
-        };
-
-        let jwt = this.jwtService.sign(data);
-
+    async signIn(user: User) {
+        const payload = {username: user.username, sub: user._id};
         return {
-            expiresIn: 3600,
-            token: jwt
-        }
+            accessToken: this.jwtService.sign(payload),
+        };
     }
+
+    async validateUser(username: string, pass: string): Promise<User> {
+        const user = await this.userModel.findOne({ username });
+
+        if(!user) {
+            //bovebb hibakezeles kell
+            return null;
+        }
+
+        const valid = await bcrypt.compare(pass, user.password);
+
+        if(valid) {
+            return user;
+        }
+        return null;
+    }
+
+    async getCurrentUser(username: string): Promise<User> {
+        const user = await this.userModel.findOne({ username });
+        return user;
+    }
+
+    
+
+
 }

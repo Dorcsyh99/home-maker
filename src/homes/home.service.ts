@@ -3,13 +3,18 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Home, HomeDocument } from './home.model';
 import { createHomeDto } from './createHomeDto';
+import { User } from 'src/auth/interfaces/user.interface';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class HomeService {
-	constructor(@InjectModel(Home.name) private homeModel: Model<HomeDocument>) {}
+	constructor(@InjectModel(Home.name) private homeModel: Model<HomeDocument>, private authService: AuthService) {}
 
-	async addHome(createHomeDto: createHomeDto): Promise<Home> {
+	async addHome({ username }: User, createHomeDto: createHomeDto): Promise<Home> {
+		const uploader = await this.authService.getCurrentUser(username);
 		const createdHome = new this.homeModel(createHomeDto);
+		createdHome.uploader = uploader;
+
 		return createdHome.save();
 	}
 
