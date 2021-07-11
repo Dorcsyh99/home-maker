@@ -2,22 +2,36 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
+import { exception } from 'console';
 import { Model } from 'mongoose';
 
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 import { User } from './interfaces/user.interface';
+import { Expert } from './schemas/expert.schema';
 
 @Injectable()
 export class AuthService {
     constructor(@InjectModel('User') private userModel: Model<User>,
+    @InjectModel('Expert') private expertModel: Model<Expert>,
     private jwtService: JwtService) {}
 
     async signUp(authCredentials: AuthCredentialsDto): Promise<void> {
-        const { username, password } = authCredentials;
+        const { email, password, role } = authCredentials;
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = new this.userModel({ username, password: hashedPassword});
+        var user;
+
+        if (role === 'user') {
+            user = new this.userModel({email, password: hashedPassword, role});
+        } else if(role === 'expert'){
+            user = new this.expertModel({email, password: hashedPassword, role});
+        } else{
+            throw new exception('Hiba');
+        }
+
+        
 
         try {
             await user.save();
@@ -30,14 +44,16 @@ export class AuthService {
     }
 
     async signIn(user: User) {
-        const payload = {username: user.username, sub: user._id};
+        const payload = {email: user.email, sub: user._id};
         return {
             accessToken: this.jwtService.sign(payload),
         };
     }
 
-    async validateUser(username: string, pass: string): Promise<User> {
-        const user = await this.userModel.findOne({ username });
+
+
+    async validateUser(email: string, pass: string): Promise<User> {
+        const user = await this.userModel.findOne({ email }).exec();
 
         if(!user) {
             //bovebb hibakezeles kell
@@ -52,12 +68,19 @@ export class AuthService {
         return null;
     }
 
-    async getCurrentUser(username: string): Promise<User> {
-        const user = await this.userModel.findOne({ username });
-        return user;
+    async getCurrentUser(email: string): Promise<User> {
+        const currentUser = await this.userModel.findOne({ email }).exec();
+        console.log('done');
+        return currentUser;
     }
 
-    
+    async updateProfile(id: string, updateProfileDto: UpdateProfileDto): Promise<void> {
+        try {
+            await this.userModel.findByIdAndUpdate(id, updateProfileDto).exec()
+        } catch (error) {
+            throw error;
+        }
+    }
 
 
 }

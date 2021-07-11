@@ -10,8 +10,8 @@ import { AuthService } from 'src/auth/auth.service';
 export class HomeService {
 	constructor(@InjectModel(Home.name) private homeModel: Model<HomeDocument>, private authService: AuthService) {}
 
-	async addHome({ username }: User, createHomeDto: createHomeDto): Promise<Home> {
-		const uploader = await this.authService.getCurrentUser(username);
+	async addHome({ email }: User, createHomeDto: createHomeDto): Promise<Home> {
+		const uploader = await this.authService.getCurrentUser(email);
 		const createdHome = new this.homeModel(createHomeDto);
 		createdHome.uploader = uploader;
 

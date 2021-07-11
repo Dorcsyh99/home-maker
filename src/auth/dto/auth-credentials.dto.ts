@@ -1,12 +1,14 @@
-import { IsString, MaxLength, MinLength } from 'class-validator';
+import { IsString, MaxLength, MinLength, IsEmail } from 'class-validator';
 
 export class AuthCredentialsDto {
     @IsString()
-    @MinLength(4)
-    @MaxLength(20)
-    username: string;
+    @IsEmail()
+    email: string;
 
     @IsString()
     @MinLength(8, {message: 'A jelszónak legalább 8 karakter hosszúságunak kell lenni'})
     password: string;
+
+    @IsString()
+    role: string;
 }
