@@ -2,18 +2,15 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
-import { exception } from 'console';
 import { Model } from 'mongoose';
 
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { User } from './interfaces/user.interface';
-import { Expert } from './schemas/expert.schema';
 
 @Injectable()
 export class AuthService {
     constructor(@InjectModel('User') private userModel: Model<User>,
-    @InjectModel('Expert') private expertModel: Model<Expert>,
     private jwtService: JwtService) {}
 
     async signUp(authCredentials: AuthCredentialsDto): Promise<void> {
@@ -21,17 +18,7 @@ export class AuthService {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        var user;
-
-        if (role === 'user') {
-            user = new this.userModel({email, password: hashedPassword, role});
-        } else if(role === 'expert'){
-            user = new this.expertModel({email, password: hashedPassword, role});
-        } else{
-            throw new exception('Hiba');
-        }
-
-        
+        const user = new this.userModel({email, password: hashedPassword, role});        
 
         try {
             await user.save();

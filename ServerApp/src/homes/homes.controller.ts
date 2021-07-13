@@ -2,7 +2,6 @@ import { Controller, Post, Body, Get, Param, Patch, Req, Delete, UseGuards } fro
 import {HomeService} from './home.service';
 import { createHomeDto } from './createHomeDto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { Home } from './home.model';
 import { User } from 'src/auth/interfaces/user.interface';
 @Controller('home')
 export class HomesController {
