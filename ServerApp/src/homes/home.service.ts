@@ -1,17 +1,18 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Home, HomeDocument } from './home.model';
 import { createHomeDto } from './createHomeDto';
 import { User } from 'src/auth/interfaces/user.interface';
 import { AuthService } from 'src/auth/auth.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
 export class HomeService {
 	constructor(@InjectModel(Home.name) private homeModel: Model<HomeDocument>, private authService: AuthService) {}
 
-	async addHome({ email }: User, createHomeDto: createHomeDto): Promise<Home> {
-		const uploader = await this.authService.getCurrentUser(email);
+	async addHome(email: string, createHomeDto: createHomeDto): Promise<Home> {
+		const uploader: User = await this.authService.getCurrentUser(email);
 		const createdHome = new this.homeModel(createHomeDto);
 		createdHome.uploader = uploader;
 

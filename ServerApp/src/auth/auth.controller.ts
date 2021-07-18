@@ -12,6 +12,7 @@ import { Body,
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { AuthLogintDto } from './dto/user-login.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { User } from './interfaces/user.interface';
@@ -21,24 +22,20 @@ export class AuthController {
     constructor(private authService: AuthService) {}
 
     @Post('/signup')
-    async signUpAsUser(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> {
-        return await this.authService.signUp(authCredentialsDto);
-    }
-
-    @Post('/signupexp')
-    async signUpAsExpert(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> {
+    async signUp(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<User> {
         return await this.authService.signUp(authCredentialsDto);
     }
  
     @Post('/signin')
-    async signIn(@Req() req: User) {
-        return this.authService.signIn(req);
+    async signIn(@Body() authLoginDto: AuthLogintDto) {
+        return this.authService.signIn(authLoginDto);
     }
 
     @UseGuards(JwtAuthGuard)
     @Get('/me')
     getMe(@Request() req) {
-      return req.user;
+        console.log(req);
+        return req.user;
     }
 
     @UseGuards(JwtAuthGuard)

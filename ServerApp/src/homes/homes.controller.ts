@@ -3,6 +3,7 @@ import {HomeService} from './home.service';
 import { createHomeDto } from './createHomeDto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { User } from 'src/auth/interfaces/user.interface';
+import { CurrentUser } from 'src/auth/decorators/currentuser.decorator';
 @Controller('home')
 export class HomesController {
 
@@ -10,9 +11,9 @@ export class HomesController {
 
     @UseGuards(JwtAuthGuard)
     @Post('/create')
-    async addHome(@Body() createHomeDto: createHomeDto, @Req() req: any) {
-        const user = <User>req.user;
-        const home = await this.homeService.addHome(user, createHomeDto);
+    async addHome(@Req() req, @Body() createHomeDto: createHomeDto) {
+        const email = req.user.email;
+        const home = await this.homeService.addHome(email, createHomeDto);
         return home;
     }
 

@@ -12,8 +12,8 @@ export class RateService{
     async createRating(addRatingDto: AddRatingDto, userId: number, expertId: number): Promise<Rate>{
         const rate = new this.RateModel(addRatingDto);
 
-        rate.user = await this.UserModel.findById(userId);
-        rate.expert = await this.UserModel.findById(expertId);
+        //rate.user = await this.UserModel.findById(userId);
+        //rate.expert = await this.UserModel.findById(expertId);
 
         try {
             await rate.save();
