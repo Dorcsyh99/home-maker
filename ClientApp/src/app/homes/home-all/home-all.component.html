@@ -1,0 +1,22 @@
+<div class="card-container">
+  <div class="card" *ngFor="let home of homes">
+    <div class="top-side">
+      <!-- img a hatter rajta informaciok -->
+      <div class="house-img">
+        <span>{{home.size}}</span>
+        <span>{{home.size}}</span>
+        <span>{{home.price}}</span>
+
+      </div>
+    </div>
+    <div class="middle-side">
+      <h2>{{home.city}}</h2>
+      <h3>{{home.address}}</h3>
+      <p></p>
+    </div>
+    <div class="bottom-side">
+      <button><a routerLink=""><mat-icon>favorite</mat-icon></a></button>
+      <button><a routerLink="{{home._id}}">Megnézem</a></button>
+    </div>
+  </div>
+</div>

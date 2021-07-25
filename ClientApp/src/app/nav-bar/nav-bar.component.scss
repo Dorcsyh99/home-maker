@@ -1,7 +1,40 @@
 .nav-bar{
-    margin: 0;
-    padding: 10px 30px;
-    background-color: none;
-    color: #333;
-    font-size: 18px;
+  width: 100%;
+  min-height: 5%;
+  margin: 0;
+  padding: 5px;
+  background-color: none;
+  color: #333;
+  font-size: 18px;
+  clear: both;
+  font-family: "Raleway", sans-serif;
+  .left-side{
+    float: left;
+    margin-right: 10%;
+    img{
+      width: 115px;
+    }
+  }
+  .right-side{
+    ul{
+      list-style-type: none;
+      li{
+        float: left;
+        padding: 25px 10px 0 10px;
+      }
+    }
+  }
+  .account{
+    padding: 5px;
+    ul{
+      list-style-type: none;
+      li{
+        float: right;
+        padding-right: 5%;
+      }
+    }
+  }
+  .clear{
+    clear: both;
+  }
 }

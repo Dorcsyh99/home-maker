@@ -1,15 +1,30 @@
-<div class="nav-bar">
-    <div class="left-side">
-        <img>
-    </div>
-    <div class="right-side">
-        <div class="menu">
-            <ul>
-                <li>Home</li>
-                <li>Szakemberek</li>
-                <li>Profil</li>
-                <li>Ingatlan feltöltése</li>
-            </ul>
-        </div>
-    </div>
-</div>
+<nav class="nav-bar">
+  <div class="left-side">
+      <a routerLink='' ><img src="../../assets/img/house-logo.jpg"></a>
+  </div>
+  <div class="right-side">
+    <ul>
+        <li>
+          <a routerLink='expert/all'>Szakemberek</a>
+        </li>
+        <li>
+          <a routerLink="home/featured">Kiemelt Ingatlanok</a>
+        </li>
+    </ul>
+  </div>
+  <div class="account">
+    <ul>
+      <li>
+        <a routerLink="home/upload">Ingatlan feltöltése</a>
+      </li>
+      <li>
+        <button mat-button [matMenuTriggerFor]="menu">Profil</button>
+        <mat-menu #menu="matMenu">
+          <a routerLink="login" mat-menu-item>Bejelentkezés</a>
+          <a routerLink="signup" mat-menu-item>Regisztráció</a>
+        </mat-menu>
+      </li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+</nav>
