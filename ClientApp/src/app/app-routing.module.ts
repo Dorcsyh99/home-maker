@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent, SuccessfulRegistrationComponent } from './auth/signup/signup.component';
 import { UserhomeComponent } from './auth/userhome/userhome.component';
@@ -18,13 +19,13 @@ const routes: Routes = [
   { path: '', component: HomePageComponent  },
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'userhome', component: UserhomeComponent},
+  {path: 'userhome', component: UserhomeComponent, canActivate: [AuthGuard]},
   {path: 'success', component: SuccessfulRegistrationComponent},
   {path: 'home/get/:id', component: HomeGetComponent},
   {path: 'home/all', component: HomeAllComponent},
   {path: 'home/upload/:id', component: HomeUploadComponent},
   {path: 'home/featured', component: HomeFeaturedComponent},
-  {path: 'expert/:id', component: ExpertGetComponent},
+  {path: 'expert/get/:id', component: ExpertGetComponent},
   {path: 'expert/all', component: ExpertAllComponent},
   {path: 'expert/profile/:id', component: ExpertHomeComponent},
   {path: 'expert/update/:id', component: ExpertUpdateComponent},

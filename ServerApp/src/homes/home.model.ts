@@ -11,9 +11,39 @@ export class Home {
   @Prop()
   city: string;
   @Prop()
+  city2: string;
+  @Prop()
   address: string;
   @Prop()
   size: number;
+  @Prop()
+  rooms: number;
+  @Prop()
+  condition: string;
+  @Prop()
+  year: number;
+  @Prop()
+  level: number;
+  @Prop()
+  levelsInBuilding: number;
+  @Prop()
+  elevator: boolean;
+  @Prop()
+  garden: boolean;
+  @Prop()
+  attic: boolean;
+  @Prop()
+  heating: string;
+  @Prop()
+  type: string;
+  @Prop()
+  parking: string;
+  @Prop()
+  price: string;
+  @Prop()
+  pet: boolean;
+  @Prop()
+  smoke: boolean;
 }
 
 export const HomeSchema = SchemaFactory.createForClass(Home);

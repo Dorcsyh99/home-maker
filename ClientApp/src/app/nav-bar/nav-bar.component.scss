@@ -1,36 +1,36 @@
 .nav-bar{
+  a{
+    color: inherit;
+    text-decoration: none;
+  }
   width: 100%;
-  min-height: 5%;
-  margin: 0;
-  padding: 5px;
-  background-color: none;
+  background-color: transparent;
   color: #333;
-  font-size: 18px;
-  clear: both;
+  font-size: 15px;
   font-family: "Raleway", sans-serif;
   .left-side{
     float: left;
-    margin-right: 10%;
+    margin-right: 5%;
     img{
-      width: 115px;
+      width: 100px;
     }
   }
   .right-side{
     ul{
       list-style-type: none;
       li{
-        float: left;
-        padding: 25px 10px 0 10px;
+        float: right;
+        padding: 25px 60px 0 50px;
       }
     }
   }
   .account{
-    padding: 5px;
+    padding-top: 5px;
     ul{
       list-style-type: none;
       li{
         float: right;
-        padding-right: 5%;
+        padding-right: 0;
       }
     }
   }

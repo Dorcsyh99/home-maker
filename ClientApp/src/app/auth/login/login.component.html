@@ -1,13 +1,30 @@
-<h2>Bejelentkezés</h2>
-<hr>
-<form (submit)="onLogin(loginForm)" #loginForm="ngForm">
-    <mat-form-field appearance="outline">
+<div class="left"></div>
+<div class="right">
+  <h2>Bejelentkezés</h2>
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+    <mat-form-field>
       <mat-label>Email cím</mat-label>
       <input matInput type="email" name="email" required ngModel #emailInput="ngModel">
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Jelszó</mat-label>
       <input matInput type="password" name="password" ngModel #passwordInput="ngModel" required password>
     </mat-form-field>
     <button mat-button type="submit">Belépés</button>
   </form>
+  
+</div>
+
+<!-- <h2>Bejelentkezés</h2>
+<hr>
+<form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Email cím</mat-label>
+    <input matInput type="email" name="email" required ngModel #emailInput="ngModel">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Jelszó</mat-label>
+    <input matInput type="password" name="password" ngModel #passwordInput="ngModel" required password>
+  </mat-form-field>
+  <button mat-button type="submit">Belépés</button>
+</form> -->

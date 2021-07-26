@@ -27,9 +27,9 @@ export class HomeService {
 		return await this.homeModel.findById(id).exec();
 	}
 
-	async update(id: string, createHomeDto: createHomeDto): Promise<Home> {
-		return await this.homeModel.findByIdAndUpdate(id, createHomeDto).exec();
-	}
+	//async update(id: string, createHomeDto: createHomeDto): Promise<Home> {
+	//	return await this.homeModel.findByIdAndUpdate(id, createHomeDto).exec();
+	//}
 
 	async delete(id: string): Promise<Home> {
 		return await this.homeModel.findByIdAndDelete(id).exec();

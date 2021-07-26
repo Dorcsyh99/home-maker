@@ -27,10 +27,10 @@ export class HomesController {
         return await this.homeService.findOne(id);
     }
 
-    @Patch(':id')
+    /*@Patch(':id')
     async update(@Param('id') id: string, @Body() createHomeDto: createHomeDto){
         return await this.homeService.update(id, createHomeDto);
-    }
+    }*/
 
     @Delete(':id')
     async delete(@Param('id') id:string) {

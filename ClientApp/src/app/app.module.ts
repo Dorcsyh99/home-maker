@@ -29,6 +29,10 @@ import { ExpertAllComponent } from './experts/expert-all/expert-all.component';
 import { ExpertHomeComponent } from './experts/admin/expert-home/expert-home.component';
 import { ExpertUpdateComponent } from './experts/admin/expert-update/expert-update.component';
 import { HomeFeaturedComponent } from './homes/home-featured/home-featured.component';
+import { AddRateComponent } from './rates/add-rate/add-rate.component';
+import { AgentsComponent } from './re-agent/agents/agents.component';
+import { AgentComponent } from './re-agent/agent/agent.component';
+import { AgentHomeComponent } from './re-agent/admin/agent-home/agent-home.component';
 
 
 @NgModule({
@@ -47,7 +51,11 @@ import { HomeFeaturedComponent } from './homes/home-featured/home-featured.compo
     ExpertAllComponent,
     ExpertHomeComponent,
     ExpertUpdateComponent,
-    HomeFeaturedComponent
+    HomeFeaturedComponent,
+    AddRateComponent,
+    AgentsComponent,
+    AgentComponent,
+    AgentHomeComponent
   ],
   imports: [
     BrowserModule,
