@@ -5,32 +5,45 @@
   }
   width: 100%;
   background-color: transparent;
-  color: #333;
+  color: white;
   font-size: 15px;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   .left-side{
     float: left;
-    margin-right: 5%;
-    img{
-      width: 100px;
-    }
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 800;
   }
   .right-side{
     ul{
+      margin-left: 25%;
       list-style-type: none;
+      font-weight: 800;
       li{
-        float: right;
-        padding: 25px 60px 0 50px;
+        float: left;
+        padding: 20px 10px 0 50px;
       }
     }
   }
-  .account{
+  .profile{
     padding-top: 5px;
     ul{
       list-style-type: none;
       li{
         float: right;
-        padding-right: 0;
+        padding-right: 30px;
+        .signup {
+          font-weight: 700;
+            border: 2px solid white;
+            background-color: none;
+            border-radius: 45px;
+            padding: 10px 15px;
+            transition: 0.2s ease-in all;
+            &:hover{
+              background-color: white;
+              color: rgb(120, 37, 189)
+            }
+        }
       }
     }
   }

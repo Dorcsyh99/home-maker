@@ -1,28 +1,30 @@
 <nav class="nav-bar">
-  <!-- <div class="left-side">
-      <a routerLink='' ><img src="../../assets/img/house-logo.jpg"></a>
-  </div> -->
+  <div class="left-side">
+      <a routerLink='' >HOME</a>
+  </div>
   <div class="right-side">
     <ul>
         <li>
-          <a routerLink='expert/all'>Szakemberek</a>
+          <a routerLink="home/all">Ingatlanok</a>
         </li>
         <li>
-          <a routerLink="home/featured">Kiemelt Ingatlanok</a>
+          <a routerLink="expert/all">Szakemberek</a>
         </li>
         <li>
-          <a href="#">Ingatlanosok</a>
+          <a routerLink="re-agent/all">Ingatlanosok</a>
+        </li>
+        <li>
+          <a href="#">Kapcsolat</a>
         </li>
     </ul>
   </div>
-  <div class="account">
+  <div class="profile">
     <ul>
       <li>
-        <button mat-button [matMenuTriggerFor]="menu">Profil</button>
-        <mat-menu #menu="matMenu">
-          <a routerLink="login" mat-menu-item>Bejelentkezés</a>
-          <a routerLink="signup" mat-menu-item>Regisztráció</a>
-        </mat-menu>
+        <a class="signup" routerLink='signup'>Regisztráció</a>
+      </li>
+      <li>
+        <a class="signin" routerLink="signin">Bejelentkezés</a>
       </li>
     </ul>
   </div>
