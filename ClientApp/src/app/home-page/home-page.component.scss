@@ -2,8 +2,36 @@
    background-image: url("../../assets/img/main-page2.jpg");
    background-size: cover;
    background-repeat: no-repeat;
-   background-position: top center;
+   background-position: 75% center;
    height: 90%;
    width: 100%;
    margin-top: -75px;
+   font-family: 'Raleway', sans-serif;
+}
+.search-container{
+  background: rgba(0,0,0,0.6);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  clear: both;
+  max-width: 30%;
+  position: relative;
+  top: 10%;
+  left: 10%;
+  padding: 50px 30px;
+  color: white;
+  h2{
+    padding: 20px 10px;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 36px;
+  }
+  form{
+    input:first-child{
+      display: block;
+      width: 80%;
+      height: 40px;
+      border-radius: 10px;
+      padding: 3px 7px;
+    }
+  }
 }

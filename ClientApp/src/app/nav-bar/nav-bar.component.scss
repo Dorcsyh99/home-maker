@@ -2,6 +2,10 @@
   a{
     color: inherit;
     text-decoration: none;
+    transition: 0.2s ease-in all;
+    &:hover{
+      color: hsl(258, 86%, 37%);
+    }
   }
   width: 100%;
   background-color: transparent;
@@ -41,7 +45,7 @@
             transition: 0.2s ease-in all;
             &:hover{
               background-color: white;
-              color: rgb(120, 37, 189)
+              color: hsl(258, 86%, 37%);;
             }
         }
       }
