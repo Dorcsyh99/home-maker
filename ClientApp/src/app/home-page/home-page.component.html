@@ -1,15 +1,25 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <section class="hero-image-section">
   <div class="clear"></div>
     <div class="search-container">
         <h2>Az álomotthon többé nem csak álom!</h2>
         <form [formGroup]="searchForm">
           <input id="city" type="text" formControlName="city" placeholder="Város">
-          <label for="type">Eladó</label>
-          <input id="type" formControlName="type" type="radio" value="Eladó">
-          <label for="type">Kiadó</label>
-          <input id="type" formControlName="type" type="radio" value="Kiadó">
-          <input type="number" id="minPrice" formControlName="minPrice">
-          <input type="number" id="maxPrice" formControlName="maxPrice">
+          <div class="type-select">
+            <label for="type">Eladó</label>
+            <input id="type" formControlName="type" type="radio" value="Eladó"><br>
+            <label for="type">Kiadó</label>
+            <input id="type" formControlName="type" type="radio" value="Kiadó">
+          </div>
+          <div class="price-selector">
+            <input type="number" id="minPrice" formControlName="minPrice" placeholder='Ár minimum'>
+            <input type="number" id="maxPrice" formControlName="maxPrice" placeholder='Ár maximum'>    
+          </div>
+          <div class="clear"></div>
+          <div class="button-container">
+              <button type="submit">Részletes Kereső</button>
+              <button type="submit">Keresés</button>
+          </div>
         </form>
     </div>
     <div class="expert-search-container">
