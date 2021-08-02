@@ -3,7 +3,7 @@
    background-size: cover;
    background-repeat: no-repeat;
    background-position: 75% center;
-   height: 90%;
+   height: 100%;
    width: 100%;
    margin-top: -75px;
    font-family: 'Raleway', sans-serif;
@@ -110,4 +110,64 @@
 }
 .clear{
   clear: both;
+}
+
+.information-section{
+  font-family: 'Raleway', sans-serif;
+  padding: 100px 40px 160px 40px;
+  h2{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    margin: 50px 60px;
+    float: left;
+  }
+  p{
+    position: relative;
+   padding-left: 50px;
+   font-size: 16px;
+   font-weight: 500; 
+   left: 200px;
+   margin-right: 250px;
+  }
+  ul{
+    margin-top: 100px;
+    width: 100%;
+    li{
+      max-width: 120px;
+      float: left;
+      list-style-type: none;
+      padding: 0 10% 0 5%;
+      font-size: 16px;
+      font-weight: 600;
+      span{
+        display: block;
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--dark-purple);
+      }
+    }
+  }
+}
+
+.featured-homes-section{
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  background-color: var(--dark-purple);
+  .card{
+    .top{
+      background-image: url('../../assets/img/home-exmpl.jpg');
+      background-size: cover;
+      max-width: 250px;
+      height: 150px;
+      span{
+        float: right;
+        background-color: var(--medium-green);
+        padding: 5px 10px;
+        margin: 10px 15px;
+        border-radius: 15px;
+        font-weight: 600;
+      }   
+    }
+  }
 }

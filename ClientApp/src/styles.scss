@@ -28,6 +28,13 @@ $ClientApp-theme: mat.define-light-theme((
   )
 ));
 
+:root{
+  --dark-purple: #54436b;
+  --medium-green: #50cb93;
+  --green: #71efa3;
+  --light-green: #acffad;
+}
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
