@@ -8,6 +8,8 @@ import { AuthService } from '../auth/auth.service';
 })
 export class NavBarComponent implements OnInit {
 
+  isLoggedIn = this.authservice.getIsAuth();
+
   constructor(private authservice: AuthService) { }
 
   ngOnInit(): void {

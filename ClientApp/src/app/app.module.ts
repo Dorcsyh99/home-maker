@@ -33,6 +33,7 @@ import { AddRateComponent } from './rates/add-rate/add-rate.component';
 import { AgentsComponent } from './re-agent/agents/agents.component';
 import { AgentComponent } from './re-agent/agent/agent.component';
 import { AgentHomeComponent } from './re-agent/admin/agent-home/agent-home.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 @NgModule({
@@ -72,7 +73,12 @@ import { AgentHomeComponent } from './re-agent/admin/agent-home/agent-home.compo
     MatButtonModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthIntercepter,
+      multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

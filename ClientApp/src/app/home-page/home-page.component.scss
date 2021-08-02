@@ -87,10 +87,26 @@
 }
 
 .expert-search-container{
-  position: relative;
-  top: 100px;
-  left: 30%;
-  
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  a{
+    border: 2px solid white;
+    color: rgb(29, 0, 156);
+    font-weight: 600;
+    font-size: 22px;
+    background-color: white;
+    padding: 20px 25px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: .2s ease-in all;
+    &:hover{
+      background-color:rgb(29, 0, 156);
+      color: white;
+      border-color:rgb(29, 0, 156);
+    }
+  }
+
 }
 .clear{
   clear: both;

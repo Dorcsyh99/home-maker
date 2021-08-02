@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -14,13 +15,20 @@ export class HomePageComponent implements OnInit {
     maxPrice: new FormControl(''),
     type: new FormControl(''),
   });
-  constructor() { }
+
+  expertForm = new FormGroup({
+    city: new FormControl(''),
+    field: new FormControl('')
+  });
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    console.log(this.authService.getToken());
 
   }
 
 
-  onSubmit(form: FormGroup){}
+  onSubmit(){}
 
 }

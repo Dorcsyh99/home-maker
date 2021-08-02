@@ -13,24 +13,18 @@ export class UserhomeComponent implements OnInit {
   public user = localStorage.getItem("userName");
   public id = localStorage.getItem("userId");
   public userData!: LoggedInUser;
+  public token = localStorage.getItem('token');
+
 
   constructor(public authService: AuthService) {
 
   }
 
   ngOnInit() {
-    this.authService.getUser(this.id as string).subscribe(user => {
+    console.log("token on userhome: ", this.token);
+    this.authService.getUser(this.token as string).subscribe(user => {
       this.userData = {
         email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        phone: user.phone,
-        image: user.image,
-        jobTitle: user.jobTitle,
-        registrationDate: user.registrationDate,
-        uploadedProperties: user.uploadedProperties,
-        role: user.role,
-        password: user.password
       }
       console.log(this.userData);
     });

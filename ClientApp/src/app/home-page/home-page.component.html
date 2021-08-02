@@ -3,7 +3,7 @@
   <div class="clear"></div>
     <div class="search-container">
         <h2>Az álomotthon többé nem csak álom!</h2>
-        <form [formGroup]="searchForm">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
           <input id="city" type="text" formControlName="city" placeholder="Város">
           <div class="type-select">
             <label for="type">Eladó</label>
@@ -13,7 +13,7 @@
           </div>
           <div class="price-selector">
             <input type="number" id="minPrice" formControlName="minPrice" placeholder='Ár minimum'>
-            <input type="number" id="maxPrice" formControlName="maxPrice" placeholder='Ár maximum'>    
+            <input type="number" id="maxPrice" formControlName="maxPrice" placeholder='Ár maximum'>
           </div>
           <div class="clear"></div>
           <div class="button-container">
@@ -23,14 +23,7 @@
         </form>
     </div>
     <div class="expert-search-container">
-        <h3>Szakembert keresek!</h3>
-        <form>
-            <label>Szakterület</label>
-            <input type="text" name="field" placeholder="Tetőfedő, villanyszerelő...">
-            <label>Város</label>
-            <input type="text" placeholder="Budapest">
-        <button>Keresés</button>
-        </form>
+        <a routerLink="expert/all">Szakembert keresek</a>
     </div>
 </section>
 <section class="information-section">

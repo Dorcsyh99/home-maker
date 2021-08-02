@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,18 +8,30 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor(private authService: AuthService) { }
+  form:FormGroup;
 
-  ngOnInit() {
+  constructor(private fb:FormBuilder,
+               private authService: AuthService,
+               private router: Router) {
+
+      this.form = this.fb.group({
+          email: ['',Validators.required],
+          password: ['',Validators.required]
+      });
   }
 
-  onLogin(form: NgForm){
-    if(form.invalid){
-      return
-    }
-    this.authService.login(form.value.email, form.value.password);
-  }
+  onLogin() {
+      const val = this.form.value;
+      console.log(val.email);
 
+      if(this.form.invalid){
+        console.log("invalid form");
+      }else{
+        console.log("front-end");
+        this.authService.login(val.email, val.password);
+      }
+  }
 }
+

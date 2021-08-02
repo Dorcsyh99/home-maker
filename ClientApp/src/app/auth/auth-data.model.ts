@@ -11,7 +11,7 @@ export interface LoginData {
 
 export interface LoggedInUser{
   email: string;
-  password: string;
+  /*password: string;
   firstName: string;
   lastName: string;
   role: string;
@@ -19,6 +19,6 @@ export interface LoggedInUser{
   phone: number;
   image: string;
   jobTitle: string;
-  uploadedProperties: number;
+  uploadedProperties: number; */
 }
 

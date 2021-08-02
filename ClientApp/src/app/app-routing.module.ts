@@ -17,7 +17,7 @@ import { HomeUploadComponent } from './homes/home-upload/home-upload.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent  },
-  {path: 'login', component: LoginComponent},
+  {path: 'signin', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'userhome', component: UserhomeComponent, canActivate: [AuthGuard]},
   {path: 'success', component: SuccessfulRegistrationComponent},
@@ -35,6 +35,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
