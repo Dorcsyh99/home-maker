@@ -4,6 +4,7 @@ import { AuthData, LoginData, LoggedInUser } from './auth-data.model';
 import { Router } from '@angular/router';
 import {Subject, Observable} from "rxjs";
 import { map, tap } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Injectable({ providedIn: "root"})
 export class AuthService {
@@ -23,7 +24,7 @@ export class AuthService {
   }
 
   getIsAuth(){
-    return this.isAuthenticated;
+    return moment().isBefore(this.getExpiration());
   }
 
   getUserId(){
@@ -40,6 +41,12 @@ export class AuthService {
 
   getUserData(){
     return this.userData;
+  }
+
+  getExpiration(){
+    const expiration: any = localStorage.getItem("expiration");
+    const expiresAt = expiration;
+    return moment(expiration);
   }
 
   createUser(email: string, password: string, role: string){
@@ -122,7 +129,7 @@ export class AuthService {
     localStorage.setItem("expiration", expirationDate.toISOString());
     localStorage.setItem("userId", userId);
     localStorage.setItem("userName", userName);
-    console.log("elmentve");
+    console.log("authdata elmentve");
   }
 
   private clearAuthData(){

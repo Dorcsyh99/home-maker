@@ -20,11 +20,14 @@
   </div>
   <div class="profile">
     <ul>
-      <li>
+      <li *ngIf="!isLoggedIn">
         <a class="signup" routerLink='signup'>Regisztráció</a>
       </li>
-      <li>
+      <li *ngIf="!isLoggedIn">
         <a class="signin" routerLink="signin">Bejelentkezés</a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a class="signin" (click)="logOut()">Kijelentkezés</a>
       </li>
     </ul>
   </div>

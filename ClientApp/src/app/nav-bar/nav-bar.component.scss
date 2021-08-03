@@ -7,11 +7,12 @@
       color: hsl(258, 86%, 37%);
     }
   }
+  position: fixed;
   width: 100%;
   background-color: transparent;
   color: white;
   font-size: 15px;
-  z-index: 5;
+  z-index: 100;
   font-family: 'Raleway', sans-serif;
   .left-side{
     float: left;
