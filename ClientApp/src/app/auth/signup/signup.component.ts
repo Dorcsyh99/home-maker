@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-
-interface Role {
-  value: number;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-signup',
@@ -15,21 +11,43 @@ interface Role {
 
 export class SignupComponent implements OnInit {
 
-  role = "User";
+  form:FormGroup;
+  expertForm:FormGroup;
 
-  constructor(public authService: AuthService) { }
+  constructor(private fb:FormBuilder,
+               private authService: AuthService,
+               private router: Router) {
+
+      this.form = this.fb.group({
+        firstName: [''],
+        lastName: [''],
+        email: ['',Validators.required],
+        password: ['',Validators.required]
+      });
+      this.expertForm = this.fb.group({
+        firstName: [''],
+        lastName: [''],
+        mainField: [''],
+        email: ['',Validators.required],
+        password: ['',Validators.required]
+      })
+  }
+
+
 
   ngOnInit() {
   }
 
-  onSignup(form: NgForm){
-    if(form.invalid){
-      console.log('invalid form!');
+  onSignup(role: string){
+    const val = this.form.value;
+    const expVal = this.expertForm.value;
+
+    if(role === 'User'){
+      this.authService.createUser(val.firstName, val.lastName, val.email, val.password);
     }
-    console.log("belépett ide");
-    console.log(form.value.email, form.value.password);
-    this.authService.createUser(form.value.email, form.value.password, this.role);
   }
+
+  
 
 }
 

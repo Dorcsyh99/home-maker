@@ -1,6 +1,8 @@
 import { IsString, MaxLength, MinLength, IsEmail } from 'class-validator';
 
 export class AuthCredentialsDto {    
+    firstName: string;
+    lastName: string;
     @IsString()
     @IsEmail()
     email: string;

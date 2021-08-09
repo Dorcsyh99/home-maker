@@ -1,15 +1,39 @@
-<h2>Regisztráció</h2>
-<form (submit)="onSignup(loginForm)" #loginForm="ngForm">
-  <mat-form-field>
-    <mat-label>Email cím</mat-label>
-    <input matInput ngModel type="email" name="email" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Jelszó</mat-label>
-    <input matInput ngModel type="password" name="password" required>
-  </mat-form-field>
-  <button mat-button type="Submit">Regisztráció</button>
-</form>
+<div class="tab-container">
+  <h1>Regisztráció</h1>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab class="content" label="Felhasználóként regisztrálok">
+      <div class="content">
+        <form class="form" [formGroup]="form">
+          <label>Keresztnév</label>
+          <input type="text" formControlName="firstName">
+          <label>Vezetéknév</label>
+          <input type="text" formControlName="lastName">
+          <label>Email cím</label>
+          <input type="text" formControlName="email">
+          <label>Jelszó</label>
+          <input type="password" formControlName="password">
+          <button type="submit" (click)="onSignup('User')">Regisztráció</button>
+        </form>
+      </div>
+    </mat-tab>
+    <mat-tab label="Szakemberként regisztrálok">
+      <form [formGroup]="expertForm">
+        <label>Keresztnév</label>
+        <input type="text" formControlName="firstName">
+        <label>Vezetéknév</label>
+        <input type="text" formControlName="lastName">
+        <label>Fő terület</label>
+        <input type="text" formControlName="mainField">
+        <label>Email cím</label>
+        <input type="text" formControlName="email">
+        <label>Jelszó</label>
+        <input type="password" formControlName="password">
+        <button (click)="onSignup('User')">Regisztráció</button>
+      </form>
+    </mat-tab>
+    <mat-tab label="Ingatlanosként regisztrálok"> Content 3 </mat-tab>
+  </mat-tab-group>
+</div>
 
 
 <!--<h2>Hozza létre felhasználói fiókját másodpercek alatt!</h2>

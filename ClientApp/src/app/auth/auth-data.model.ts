@@ -1,7 +1,16 @@
 export interface AuthData {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
-  role: string;
+}
+
+export interface AuthDataExpert {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  mainField: string;
 }
 
 export interface LoginData {
