@@ -45,6 +45,9 @@ export class SignupComponent implements OnInit {
     if(role === 'User'){
       this.authService.createUser(val.firstName, val.lastName, val.email, val.password);
     }
+    if(role === 'Expert'){
+      this.authService.createExpert(expVal.firstName, expVal.lastName, expVal.mainField, expVal.email, expVal.password);
+    }
   }
 
   

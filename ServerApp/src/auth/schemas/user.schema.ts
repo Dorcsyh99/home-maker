@@ -25,6 +25,8 @@ export class User {
   registrationTime: Date;
   @Prop()
   phone: number;
+  @Prop()
+  mainField: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
