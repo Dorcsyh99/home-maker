@@ -1,3 +1,53 @@
 <div class="upload-container">
-    <mat-stepper></mat-stepper>
+    <h1>Ingatlan Feltöltése</h1>
+    <mat-stepper [linear]="false">
+        <mat-step>
+            <ng-template matStepLabel>Ingatlan típusa</ng-template>
+            <div class="type-form form">
+                <h2>Válaszd ki az ingatlan típusát</h2>
+                <div class="button-container">
+                    <button (click)="typeSelector('Elado')" matStepperNext>Eladó</button>
+                    <button (click)="typeSelector('Kiado')" matStepperNext>Kiadó</button>
+                </div>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Cím adatok</ng-template>
+            <h2>Add meg a pontos cím adatokat</h2>
+            <div class="address-form form">
+                <form [formGroup]="addressForm">
+                    <label>Város</label>
+                    <input type="text" formControlName="city" required>
+                    <label>Kerület</label>
+                    <input type="text" formControlName="city2">
+                    <label>Cím</label>
+                    <input type="text" formControlName="address" required>
+                    <label>Emelet</label>
+                    <input type="number" formControlName="level">
+                    <label>Emeletek az épületben</label>
+                    <input type="number" formControlName="levelsInBuilding">
+                    <button (click)="addressData" matStepperNext>Következő</button>
+                </form>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Alapadatok</ng-template>
+            <form [formGroup]="basicForm">
+                
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>További információ</ng-template>
+            <form [formGroup]="additionalForm">
+                
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Kép felötltése</ng-template>
+            <form [formGroup]="imageForm">
+                
+            </form>
+        </mat-step>
+    </mat-stepper>
+    {{this.type}}
 </div>
