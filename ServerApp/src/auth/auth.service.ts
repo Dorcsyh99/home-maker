@@ -16,11 +16,11 @@ export class AuthService {
     private jwtService: JwtService) {}
 
     async signUp(authCredentials: AuthCredentialsDto): Promise<User> {
-        const { email, password, role } = authCredentials;
+        const { firstName, lastName, mainField, email, password, role } = authCredentials;
         const id = new Types.ObjectId();
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = new this.userModel({_id: id, email: email, password: hashedPassword, role: role});        
+        const user = new this.userModel({_id: id, firstName: firstName, lastName: lastName, mainField: mainField, email: email, password: hashedPassword, role: role});        
 
         try {
             return await user.save();            

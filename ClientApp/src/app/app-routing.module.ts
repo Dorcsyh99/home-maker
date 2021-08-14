@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'success', component: SuccessfulRegistrationComponent},
   {path: 'home/get/:id', component: HomeGetComponent},
   {path: 'home/all', component: HomeAllComponent},
-  {path: 'home/upload/:id', component: HomeUploadComponent},
+  {path: 'home/upload', component: HomeUploadComponent},
   {path: 'home/featured', component: HomeFeaturedComponent},
   {path: 'expert/get/:id', component: ExpertGetComponent},
   {path: 'expert/all', component: ExpertAllComponent},

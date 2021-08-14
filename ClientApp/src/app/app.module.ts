@@ -16,6 +16,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -71,7 +73,9 @@ import { AuthGuard } from './auth/auth.guard';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule,
+    MatStepperModule
   ],
   providers: [
     {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-home-page',
@@ -25,7 +26,6 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.authService.getToken());
-
   }
 
 

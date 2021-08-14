@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpInterceptor } from '@angular/common/http';
-import { AuthData, LoginData, LoggedInUser } from './auth-data.model';
+import { AuthData, LoginData, LoggedInUser, AuthDataExpert } from './auth-data.model';
 import { Router } from '@angular/router';
 import {Subject, Observable} from "rxjs";
 import { map, tap } from 'rxjs/operators';
@@ -49,14 +49,24 @@ export class AuthService {
     return moment(expiration);
   }
 
-  createUser(email: string, password: string, role: string){
-    const authData: AuthData = {email: email, password: password, role: role};
+  createUser(firstName: string, lastName: string, email: string, password: string){
+    const authData: AuthData = {firstName: firstName, lastName: lastName, email: email, password: password};
     console.log("CreateUserben");
     this.http.post('http://localhost:3000/api/auth/signup', authData)
       .subscribe(res => {
         this.router.navigate(['success'])
       });
   }
+
+  createExpert(firstName: string, lastName: string, mainField: string, email: string, password: string){
+    const authData: AuthDataExpert = {firstName: firstName, lastName: lastName, mainField: mainField, email: email, password: password}
+    this.http.post('http://localhost:3000/api/auth/signup', authData)
+    .subscribe(res => {
+      this.router.navigate(['success'])
+    });
+  }
+
+  createREAgent(){}
 
   login(email: string, password: string){
     const loginData: LoginData = {email: email, password: password};
