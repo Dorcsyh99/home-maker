@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 interface Role {
@@ -16,8 +17,17 @@ interface Role {
 export class SignupComponent implements OnInit {
 
   role = "User";
+  form: FormGroup;
 
-  constructor(public authService: AuthService) { }
+  constructor(private fb:FormBuilder,
+    private authService: AuthService,
+    private router: Router) {
+
+this.form = this.fb.group({
+email: ['',Validators.required],
+password: ['',Validators.required]
+});
+}
 
   ngOnInit() {
   }
