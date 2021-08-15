@@ -8,56 +8,92 @@
     }
   }
   position: fixed;
+  display: flex;
+  padding: 2% 3%;
+  max-width: 100%;
   width: 100%;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0.5);
   color: white;
   font-size: 15px;
   z-index: 100;
+  box-shadow: -10px 1px 5px #ccc;
   font-family: 'Raleway', sans-serif;
   .left-side{
-    float: left;
-    padding: 20px;
+    flex-grow: 1;
     font-size: 20px;
     font-weight: 800;
+    margin-right: 20%;
   }
   .right-side{
+    flex-grow: 8;
     ul{
-      margin-left: 25%;
+      margin: 0;
+      padding: 0;
       list-style-type: none;
       font-weight: 800;
       li{
         float: left;
-        padding: 20px 10px 0 50px;
+        padding: 0 3%;
       }
     }
   }
   .profile{
-    padding-top: 5px;
+    flex-grow: 3;
     ul{
+      margin: 0;
+      padding: 0;
       list-style-type: none;
       li{
-        float: right;
-        padding-right: 30px;
+        float: left;
+        margin: 0 6%;
         .signup {
+          padding: 15px 20px;
           font-weight: 700;
-            border: 2px solid white;
-            background-color: none;
-            border-radius: 45px;
-            padding: 10px 15px;
-            transition: 0.2s ease-in all;
-            &:hover{
-              background-color: white;
-              color: hsl(258, 86%, 37%);;
-            }
+          border: 2px solid white;
+          background-color: none;
+          border-radius: 45px;
+          transition: 0.2s ease-in all;
+          &:hover{
+            background-color: white;
+            color: hsl(258, 86%, 37%);;
+          }
         }
       }
     }
+    .profile-btn{
+      border-radius: 50px;
+      border: 2px solid white;
+      padding: 15px 15px 5px 15px;
+      cursor: pointer;
+      transition: .2s ease-in all;
+      &:hover{
+        background: white;
+        color:hsl(258, 86%, 37%);
+      }
+    }
+    .mat-menu-content{
+      margin-top: 2%;
+      background-color: rgba(0,0,0,0.5) !important;
+      padding: 10%;
+      border: none;
+      border-radius: 5px;
+    }
   }
-  .clear{
-    clear: both;
+  .upload{
+    margin-bottom: 0;
+    margin-right: 15%;
+    border: 2px solid white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background: white;
+    color:hsl(258, 86%, 37%);
+    font-weight: 800;
+    transition: .2s ease-in-out all;
+    &:hover{
+      background-color: indianred;
+      color: white;
+      border-color: indianred;
+    }
   }
 }
 
-.overload{
-  background: rgba(0,0,0,0.3);
-}

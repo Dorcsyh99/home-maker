@@ -3,6 +3,7 @@ export interface AuthData {
   lastName: string;
   email: string;
   password: string;
+  role: string;
 }
 
 export interface AuthDataExpert {

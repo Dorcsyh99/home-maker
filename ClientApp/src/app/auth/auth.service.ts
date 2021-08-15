@@ -50,7 +50,7 @@ export class AuthService {
   }
 
   createUser(firstName: string, lastName: string, email: string, password: string){
-    const authData: AuthData = {firstName: firstName, lastName: lastName, email: email, password: password};
+    const authData: AuthData = {firstName: firstName, lastName: lastName, email: email, password: password, role: "User"};
     console.log("CreateUserben");
     this.http.post('http://localhost:3000/api/auth/signup', authData)
       .subscribe(res => {
@@ -131,6 +131,7 @@ export class AuthService {
     this.clearAuthData();
     this.userId = null as unknown as string;
     this.userName = null as unknown as string;
+    window.location.reload();
     this.router.navigate(['/']);
   }
 

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Home } from './home.model';
+import { Router } from '@angular/router';
 
 const baseURL = 'http://localhost:3000/home';
 
@@ -9,7 +11,7 @@ const baseURL = 'http://localhost:3000/home';
 })
 export class HomeService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   //home/  -Get all
   readAll(): Observable<any> {
@@ -22,8 +24,11 @@ export class HomeService {
   }
 
   //home/create  - Upload
-  create(data: FormData): Observable<any> {
-    return this.httpClient.post(baseURL, data);
+  create(data: Home){
+    console.log("Data: ", data);
+    return this.httpClient.post("http://localhost:3000/home/create", data).subscribe(res => {
+      this.router.navigate(['/']);
+    });
   }
 
   //home/:id  - Patch (update)

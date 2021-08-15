@@ -13,6 +13,7 @@ export class HomesController {
     @Post('/create')
     async addHome(@Req() req, @Body() createHomeDto: createHomeDto) {
         const email = req.user.email;
+        console.log("home controller: ", createHomeDto);
         const home = await this.homeService.addHome(email, createHomeDto);
         return home;
     }

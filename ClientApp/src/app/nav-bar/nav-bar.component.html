@@ -1,6 +1,6 @@
 <nav class="nav-bar">
   <div class="left-side">
-      <a routerLink='' >HOME</a>
+      <a routerLink=''>HOME</a>
   </div>
   <div class="right-side">
     <ul>
@@ -21,15 +21,21 @@
   <div class="profile">
     <ul>
       <li *ngIf="!isLoggedIn">
-        <a class="signup" routerLink='signup'>Regisztráció</a>
+        <a class="signin" routerLink='signin'>Bejelentkezés</a>
       </li>
       <li *ngIf="!isLoggedIn">
-        <a class="signin" routerLink="signin">Bejelentkezés</a>
-      </li>
-      <li *ngIf="isLoggedIn">
-        <a class="signin" (click)="logOut()">Kijelentkezés</a>
+        <a class="signup" routerLink="signup">Regisztráció</a>
       </li>
     </ul>
+    <a *ngIf="isLoggedIn" class="upload" routerLink="home/upload">Ingatlan feltöltése</a>
+    <a *ngIf="isLoggedIn" class="profile-btn" [matMenuTriggerFor]="profilemenu"><mat-icon>person</mat-icon></a>
+      <mat-menu #profilemenu="matMenu">
+        <div class="profile-menu">
+          <a routerLink="userhome">Profil megtekintése</a><br>
+          <a routerLink="home/featured">Ingatlanjaim</a>
+          <a routerLink="home/all">Mentett ingatlanok</a>
+          <button class="logout" (click)="logOut()">Kijelentkezés</button>
+        </div>
+      </mat-menu>
   </div>
-  <div class="clear"></div>
 </nav>

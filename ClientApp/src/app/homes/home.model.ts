@@ -4,6 +4,7 @@ export class Home {
   city?: string;
   city2?: string;
   address?: string;
+  zip?: number;
   size?: number;
   price?: number;
   rooms?: number;

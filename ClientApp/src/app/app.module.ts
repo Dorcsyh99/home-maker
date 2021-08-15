@@ -18,6 +18,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -75,7 +77,9 @@ import { AuthGuard } from './auth/auth.guard';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatExpansionModule,
+    MatCardModule
   ],
   providers: [
     {

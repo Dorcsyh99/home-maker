@@ -12,6 +12,7 @@ export class HomeService {
 	constructor(@InjectModel(Home.name) private homeModel: Model<HomeDocument>, private authService: AuthService) {}
 
 	async addHome(email: string, createHomeDto: createHomeDto): Promise<Home> {
+		console.log("Backend: ", createHomeDto);
 		const uploader: User = await this.authService.getCurrentUser(email);
 		const createdHome = new this.homeModel(createHomeDto);
 		createdHome.uploader = uploader;

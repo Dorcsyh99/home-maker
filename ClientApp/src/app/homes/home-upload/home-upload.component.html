@@ -1,53 +1,181 @@
 <div class="upload-container">
-    <h1>Ingatlan Feltöltése</h1>
-    <mat-stepper [linear]="false">
-        <mat-step>
-            <ng-template matStepLabel>Ingatlan típusa</ng-template>
-            <div class="type-form form">
-                <h2>Válaszd ki az ingatlan típusát</h2>
-                <div class="button-container">
-                    <button (click)="typeSelector('Elado')" matStepperNext>Eladó</button>
-                    <button (click)="typeSelector('Kiado')" matStepperNext>Kiadó</button>
-                </div>
+  <mat-card class="card">
+    <h2>Ingatlan Feltöltése</h2>
+    <form [formGroup]="newHomeForm" (ngSubmit)="onSubmit()">
+    <mat-expansion-panel class="expansion" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Pontos cím adatok
+        </mat-panel-title>
+        <mat-panel-description>
+          Kérjük, adja meg a pontos címet!
+          <mat-icon> edit_location </mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <div class="form">
+          <div class="column">
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Város</mat-label>
+              <input formControlName="city" matInput>
+            </mat-form-field>
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Kerület</mat-label>
+              <input formControlName="city2" matInput>
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Irányítószám</mat-label>
+              <input formControlName="zip" matInput type="number">
+            </mat-form-field>
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Cím</mat-label>
+              <input formControlName="address" matInput>
+            </mat-form-field>
+            <button mat-raised-button type="button" (click)="nextStep()">Következő</button>
+          </div>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="expansion" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Alapvető információk az ingatlanról
+        </mat-panel-title>
+        <mat-panel-description>
+          Kérjük, minél több adatot osszon meg az intalanról!
+          <mat-icon> store_mall_directory </mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <div class="form">
+          <div class="column">
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>Ingatlan típusa</mat-label>
+              <mat-select formControlName="type">
+                <mat-option value="elado">Eladó</mat-option>
+                <mat-option value="kiado">Kiadó</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Emelet</mat-label>
+              <input formControlName="level" matInput type="number">
+            </mat-form-field>
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Max emelet az épületben</mat-label>
+              <input formControlName="levelsInBuilding" matInput type="number">
+            </mat-form-field>
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Méret</mat-label>
+              <input formControlName="size" matInput type="number">
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Ár</mat-label>
+              <input formControlName="price" matInput type="number" type="number">
+            </mat-form-field>
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Szobák száma</mat-label>
+              <input formControlName="rooms" matInput type="number">
+            </mat-form-field>
+            <mat-form-field class="input address-input" appearance="outline">
+              <mat-label>Építés éve</mat-label>
+              <input formControlName="year" matInput type="number">
+            </mat-form-field>
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>Állapot</mat-label>
+              <mat-select formControlName="condition">
+                <mat-option *ngFor="let condition of conditions" [value]="condition.value">
+                  {{condition.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button type="button" (click)="nextStep()">Következő</button>
+          </div>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="expansion" [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          További (opcionális) információk
+        </mat-panel-title>
+        <mat-panel-description>
+          Kérjük, minél több adatot osszon meg az intalanról!
+          <mat-icon> event_note </mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <div class="form">
+          <div class="column">
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>Lift van ez épületben</mat-label>
+              <mat-select formControlName="elevator">
+                <mat-option value=true>Igen</mat-option>
+                <mat-option value=false>Nem</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>Erkélyes</mat-label>
+              <mat-select formControlName="attic">
+                <mat-option value=true>Igen</mat-option>
+                <mat-option value=false>Nem</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>Kert</mat-label>
+              <mat-select formControlName="garden">
+                <mat-option value=true>Igen</mat-option>
+                <mat-option value=false>Nem</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>Kisállat hozható</mat-label>
+              <mat-select formControlName="pet">
+                <mat-option value=true>Igen</mat-option>
+                <mat-option value=false>Nem</mat-option>
+              </mat-select>
+            </mat-form-field>
             </div>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Cím adatok</ng-template>
-            <h2>Add meg a pontos cím adatokat</h2>
-            <div class="address-form form">
-                <form [formGroup]="addressForm">
-                    <label>Város</label>
-                    <input type="text" formControlName="city" required>
-                    <label>Kerület</label>
-                    <input type="text" formControlName="city2">
-                    <label>Cím</label>
-                    <input type="text" formControlName="address" required>
-                    <label>Emelet</label>
-                    <input type="number" formControlName="level">
-                    <label>Emeletek az épületben</label>
-                    <input type="number" formControlName="levelsInBuilding">
-                    <button (click)="addressData" matStepperNext>Következő</button>
-                </form>
+            <div class="column">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>Dohányzás megengedett</mat-label>
+                <mat-select formControlName="smoke">
+                  <mat-option value=true>Igen</mat-option>
+                  <mat-option value=false>Nem</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>Fűtés típusa</mat-label>
+                <mat-select formControlName="heating">
+                  <mat-option *ngFor="let heat of heats" [value]="heat.value">
+                    {{heat.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>Parkolás</mat-label>
+                <mat-select formControlName="parking">
+                  <mat-option value="Garázs">Garázs</mat-option>
+                  <mat-option value="Udvari beálló">Udvari beálló</mat-option>
+                  <mat-option value="Utca">Utca</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-raised-button type="button" (click)="nextStep()">Következő</button>
             </div>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Alapadatok</ng-template>
-            <form [formGroup]="basicForm">
-                
-            </form>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>További információ</ng-template>
-            <form [formGroup]="additionalForm">
-                
-            </form>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Kép felötltése</ng-template>
-            <form [formGroup]="imageForm">
-                
-            </form>
-        </mat-step>
-    </mat-stepper>
-    {{this.type}}
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="expansion" [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Kép feltöltése
+        </mat-panel-title>
+        <mat-panel-description>
+          <mat-icon> satellite </mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <div class="form">
+          <input type="file">
+            <button mat-raised-button type="submit" >Feltöltés</button>
+          </div>
+    </mat-expansion-panel>
+    </form>
+  </mat-card>
 </div>

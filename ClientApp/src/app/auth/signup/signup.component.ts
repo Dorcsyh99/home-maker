@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
+interface Field {
+  value: string;
+}
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -13,6 +17,11 @@ export class SignupComponent implements OnInit {
 
   form:FormGroup;
   expertForm:FormGroup;
+  fields: Field[] = [
+    {value: 'Tetőfedő'},
+    {value: 'Villanyszerelő'},
+    {value: 'Vízvezetékszerelő'}
+  ];
 
   constructor(private fb:FormBuilder,
                private authService: AuthService,
@@ -61,5 +70,9 @@ export class SignupComponent implements OnInit {
 })
 
 export class SuccessfulRegistrationComponent{
+
+  ngOnInit(){
+    window.location.reload();
+  }
 
 }
