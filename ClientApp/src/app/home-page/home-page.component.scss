@@ -1,13 +1,17 @@
 .hero-image-section{
-  background-image: url("../../assets/img/interior-bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 75% center;
-  height: 100%;
-  width: 100%;
-  font-family: 'Raleway', sans-serif;
-  z-index: -1;
-
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0 5%;
+  .hero-image-card{
+    background-image: url("../../assets/img/interior-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    background-position: 75% center;
+    font-family: 'Raleway', sans-serif;
+  }
+  /*
+*/
 }
 .search-container{
   background: rgba(0,0,0,0.6);
