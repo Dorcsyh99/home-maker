@@ -18,10 +18,22 @@
     <div class="profile">
       <ul>
         <li *ngIf="!isLoggedIn">
-          <a class="signin" routerLink='signin'>Bejelentkezés</a>
+          <a routerLink='signin'>Bejelentkezés</a>
         </li>
         <li *ngIf="!isLoggedIn">
-          <a class="signup" routerLink="signup">Regisztráció</a>
+          <a routerLink="signup">Regisztráció</a>
+        </li>
+        <li *ngIf="isLoggedIn">
+          <button mat-button [matMenuTriggerFor]="menu">Profil</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Profil megtekintése</button>
+            <button mat-menu-item>Ingatlanjaim</button>
+            <button mat-menu-item>Mentett Ingatlanok</button>
+            <button mat-menu-item>Mentett Szakemberek</button>
+          </mat-menu>
+        </li>
+        <li *ngIf="isLoggedIn">
+          <a (click)="logOut()">Kijelentkezés</a>
         </li>
       </ul>
     </div>
