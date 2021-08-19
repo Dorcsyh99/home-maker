@@ -1,43 +1,49 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <section class="hero-image-section">
   <mat-card class="hero-image-card">
-    
+    <h1>Az álomotthon többé nem csak álom!</h1>
+    <div class="search-container">
+      <form>
+        <mat-form-field class="input" appearance="outline">
+          <mat-label>Város</mat-label>
+          <input matInput id="city" type="text" formControlName="city">
+        </mat-form-field>
+        <div class="type-select">
+          <label for="type">Eladó</label>
+          <input id="type" formControlName="type" type="radio" value="Eladó"><br>
+          <label for="type">Kiadó</label>
+          <input id="type" formControlName="type" type="radio" value="Kiadó">
+        </div>
+        <div class="price-selector">
+          <input type="number" id="minPrice" formControlName="minPrice" placeholder='Ár minimum'>
+          <input type="number" id="maxPrice" formControlName="maxPrice" placeholder='Ár maximum'>
+        </div>
+      </form>
+    </div>
   </mat-card>
-    <!-- <div class="search-container">
-        <h2>Az álomotthon többé nem csak álom!</h2>
-        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-          <input id="city" type="text" formControlName="city" placeholder="Város">
-          <div class="type-select">
-            <label for="type">Eladó</label>
-            <input id="type" formControlName="type" type="radio" value="Eladó"><br>
-            <label for="type">Kiadó</label>
-            <input id="type" formControlName="type" type="radio" value="Kiadó">
-          </div>
-          <div class="price-selector">
-            <input type="number" id="minPrice" formControlName="minPrice" placeholder='Ár minimum'>
-            <input type="number" id="maxPrice" formControlName="maxPrice" placeholder='Ár maximum'>
-          </div>
-          <div class="clear"></div>
-          <div class="button-container">
-              <button type="submit">Részletes Kereső</button>
-              <button type="submit">Keresés</button>
-          </div>
-        </form>
-      </div>
-    <div class="expert-search-container">
-        <a routerLink="expert/all">Szakembert keresek</a>
-    </div> -->
-
   </section>
 <section class="information-section">
-  <h2>Mi is a Home-Maker?</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tincidunt egestas odio, sit amet elementum tellus sodales sit amet. Aliquam dignissim, felis id dignissim facilisis, augue metus mollis ante, id tempor urna erat ac magna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam consequat tempor blandit. Curabitur a pulvinar leo. Praesent nec arcu sit amet risus aliquet blandit. Donec vestibulum convallis nunc vitae faucibus. Duis euismod nunc ipsum, ornare mollis est molestie in. Nunc commodo viverra lectus, et lobortis augue vulputate ac.</p>
-  <ul>
-    <li><span>1000+</span> elérhető otthon</li>
-    <li><span>200+</span> elérhető szakember</li>
-    <li><span>20+</span> elérhető profi ingatlanszakértő</li>
-    <li><span>10/10</span> elégedett ügyfél</li>
-  </ul>
+  <div class="left">
+    <mat-card class="card">
+      <h2>Mi is a Home-Maker?</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tincidunt egestas odio, sit amet elementum tellus sodales sit amet. Aliquam dignissim, felis id dignissim facilisis, augue metus mollis ante, id tempor urna erat ac magna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam consequat tempor blandit. Curabitur a pulvinar leo. Praesent nec arcu sit amet risus aliquet blandit. Donec vestibulum convallis nunc vitae faucibus. Duis euismod nunc ipsum, ornare mollis est molestie in. Nunc commodo viverra lectus, et lobortis augue vulputate ac.</p>
+      <div class="btn-container">
+        <button mat-raised-button>Tudj meg többet</button>
+        <button mat-raised-button>Kapcsolat</button>
+      </div>
+    </mat-card>
+  </div>
+  <div class="right">
+    <mat-card class="card">
+      <ul>
+      <li><span>1000+</span> elérhető otthon</li>
+      <li><span>200+</span> elérhető szakember</li>
+      <li><span>20+</span> elérhető profi ingatlanszakértő</li>
+      <li><span>10/10</span> elégedett ügyfél</li>
+    </ul>
+  </mat-card>
+  </div>
+  
 </section>
 <section class="featured-homes-section">
   <h2>Kiemelt ingatlanok</h2>
