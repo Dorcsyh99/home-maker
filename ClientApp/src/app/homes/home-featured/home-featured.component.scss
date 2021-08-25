@@ -1,0 +1,45 @@
+.card{
+  padding: 2% 3%;
+  max-width: 100%;
+  min-height: 400px;
+  .h2{
+    text-align: center;
+    margin: 1% 0 2% 0;
+  }
+  .home-card{
+    float: left;
+    min-width: 21%;
+    margin: 1% 2%;
+    min-height:300px;
+    padding: 0;
+    .image{
+      background-image: url("../../../assets/img/interior.jpg");
+      background-size: cover;
+      background-position: 75% center;
+      min-width: 100%;
+      min-height: 150px;
+      span{
+        &:first-child{
+          background-color: red;
+          border: .5px solid white;
+          border-radius: 10px;
+          padding: 10px;
+          position: absolute;
+          bottom: 55%;
+          left: 5%;
+          color: white;
+        }
+        &:last-child{
+          position: absolute;
+          background: blue;
+          color: white;
+          border: .5px solid white;
+          border-radius: 5px;
+          padding: 10px;
+          bottom: 55%;
+          right: 5%;
+        }
+      }
+    }
+  }
+}

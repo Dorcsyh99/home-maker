@@ -9,6 +9,8 @@ export class Home {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User'})
   uploader: User;
   @Prop()
+  featured: boolean;
+  @Prop()
   city: string;
   @Prop()
   city2: string;

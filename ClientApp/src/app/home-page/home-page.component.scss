@@ -3,23 +3,49 @@
   max-height: 100%;
   padding: 0 5%;
   .hero-image-card{
-    background-image: url("../../assets/img/interior-bg.jpg");
+    background-image: url("../../assets/img/main-page2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 500px;
-    background-position: 75% center;
+    background-position: 100% center;
     font-family: 'Raleway', sans-serif;
+    h1{
+      text-align: center;
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin: 2% 0;
+      color: white;
+    }
     .search-container{
-      padding: 10px;
-      min-width: 70%;
-      background-color: rgba(255,255,255,0.7);
+      padding: 2% 2% 1% 2%;
+      min-width: 75%;
+      background-color: rgba(255,255,255,0.9);
       position: absolute;
       top: 40%;
       border-radius: 10px;
       margin-left: 50%;
       transform: translate(-50%,0);
       .input{
-        min-width: 70%;
+        min-width: 60%;
+        float: left;
+      }
+      .type-select{
+        float: left;
+        margin: 0 2%;
+        input{
+          margin-bottom: 15px;
+        }
+      }
+      .number{
+        max-width: 10%;
+        float: left;
+      }
+      button{
+        margin: 1% 0 1% 2%;
+        &:hover{
+          background-color: darkgreen;
+          color: white;
+        }
       }
     }
   }
@@ -64,5 +90,37 @@
     .card{
       height: 100%;
     }
-  }
+    .flex{
+      max-width: 100%;
+      padding: 2% 0% 2% 8%;
+      div{
+        position: relative;
+        min-width: 45%;
+        min-height: 50%;
+        margin: 0;
+        background-color: rgba(255, 0, 0, 0.8);
+        float: left;
+        transition: .2s ease-in all;
+        &:hover{
+          background: rgba(255, 0, 0, 0.5);
+        }
+        p{
+          color: white;
+          font-size: 18px;
+          text-align: center;
+          margin-top: 50%;
+          transform: translate(0,-50%);
+          text-transform: capitalize;
+          font-weight: 700;
+          span{
+            display: block;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+}
+}
+.featured-homes-section{
+  padding: 2% 5%;
 }

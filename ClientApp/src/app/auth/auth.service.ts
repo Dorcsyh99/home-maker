@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {Subject, Observable} from "rxjs";
 import { map, tap } from 'rxjs/operators';
 import * as moment from 'moment';
+import { NavBarComponent } from "../nav-bar/nav-bar.component";
 
 @Injectable({ providedIn: "root"})
 export class AuthService {
@@ -101,6 +102,13 @@ export class AuthService {
     return this.http.get<{
       email: string,
     }>("http://localhost:3000/api/auth/me", {headers: headers});
+  }
+
+  uploadAvatar(userId: string, image: File): Observable<any>{
+    const formData = new FormData();
+
+    formData.append('file', image);
+    return this.http.post(`${'http://localhost:3000/api/auth/'}${userId}${"/avatar"}`, formData);
   }
 
 

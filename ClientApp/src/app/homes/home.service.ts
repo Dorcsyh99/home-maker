@@ -41,4 +41,8 @@ export class HomeService {
     return this.httpClient.delete(`${baseURL}/${id}`);
   }
 
+  getFeaturedHomes() : Observable<any>{
+    return this.httpClient.get("http://localhost:3000/search/homes/featured");
+  }
+
 }

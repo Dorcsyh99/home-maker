@@ -74,5 +74,12 @@ export class AuthService {
         }
     }
 
+    public async setAvatar(userId: string, avatarUrl: string): Promise<void>{
+        console.log("User: ", userId);
+        console.log("avatar: ", avatarUrl);
+        await this.userModel.findByIdAndUpdate(userId, {avatar: avatarUrl}).exec();
+        console.log("done upload");
+    }
+
 
 }

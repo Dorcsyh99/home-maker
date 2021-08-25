@@ -7,8 +7,11 @@ import { Body,
     ValidationPipe,
     Patch,
     Req,
-    Param, 
+    Param,
+    UseInterceptors,
+    UploadedFile, 
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
@@ -16,6 +19,8 @@ import { AuthLogintDto } from './dto/user-login.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { User } from './interfaces/user.interface';
+import { MulterModule } from '@nestjs/platform-express';
+import {diskStorage} from 'multer';
 
 @Controller('api/auth')
 export class AuthController {
@@ -42,4 +47,27 @@ export class AuthController {
     async updateProfile(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
         return await this.authService.updateProfile(id, updateProfileDto)
     }
+
+    @Patch(':id/avatar')
+    @UseInterceptors(
+        FileInterceptor('file',
+        {
+            storage: diskStorage({
+                destination: './images',
+                filename: (req, file, cb) => {
+                    const dateDate = new Date().toLocaleDateString().split(".").join("");
+                    const dateTime = new Date().toLocaleTimeString().split(":").join("");
+                    const shortName = file.originalname.split('.');
+                    return cb(null, `${(shortName[0])}${"_"}${dateDate}${dateTime}${".jpg"}`);
+                    }
+                })
+        }))
+    async uploadAvatar(@Param('id') userId: string, @UploadedFile() file){
+        console.log(file);
+        const filePath = file.path;
+        console.log(filePath);
+        return await this.authService.setAvatar(userId, file.path);
+    }
+    
+
 }

@@ -1,1 +1,12 @@
-<p>home-featured works!</p>
+<mat-card class="card">
+  <mat-card-title class="h2">Kiemelt Ingatlanok</mat-card-title>
+  <mat-card class="home-card" *ngFor="let home  of homes">
+    <div class="image">
+      <span>{{home.size}} nm</span>
+      <span>{{home.type}}</span>
+      <span>{{home.price | currency: 'HUF':'symbol':'3.0-0'}}</span>
+    </div>
+    <h3>{{home.city}}</h3>
+    <h4>{{home.address}}</h4>
+  </mat-card>
+</mat-card>

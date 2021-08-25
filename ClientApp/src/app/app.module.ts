@@ -38,6 +38,11 @@ import { AgentsComponent } from './re-agent/agents/agents.component';
 import { AgentComponent } from './re-agent/agent/agent.component';
 import { AgentHomeComponent } from './re-agent/admin/agent-home/agent-home.component';
 import { AuthGuard } from './auth/auth.guard';
+import { SearchResultComponent } from './search/search-result/search-result.component';
+import { UploadAvatarComponent } from './auth/user/upload-avatar/upload-avatar.component';
+import { UpdateProfileComponent } from './auth/user/update-profile/update-profile.component';
+import { MyHomesComponent } from './homes/my-homes/my-homes.component';
+import { SavedHomesComponent } from './homes/saved-homes/saved-homes.component';
 
 
 @NgModule({
@@ -60,7 +65,12 @@ import { AuthGuard } from './auth/auth.guard';
     AddRateComponent,
     AgentsComponent,
     AgentComponent,
-    AgentHomeComponent
+    AgentHomeComponent,
+    SearchResultComponent,
+    UploadAvatarComponent,
+    UpdateProfileComponent,
+    MyHomesComponent,
+    SavedHomesComponent
   ],
   imports: [
     BrowserModule,

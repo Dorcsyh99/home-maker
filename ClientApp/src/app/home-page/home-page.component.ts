@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { SearchService } from '../search/search.service';
 
 @Component({
   selector: 'app-home-page',
@@ -17,18 +19,27 @@ export class HomePageComponent implements OnInit {
     type: new FormControl(''),
   });
 
-  expertForm = new FormGroup({
-    city: new FormControl(''),
-    field: new FormControl('')
-  });
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.authService.getToken());
   }
 
 
-  onSubmit(){}
+  onSubmit(){
+    const val = this.searchForm.value;
+    console.log(val.city);
+    if(this.searchForm.invalid){
+      console.log("invalid form!");
+    }if(val.city){
+      console.log(val.city);
+      this.searchService.findByCity(val.city).subscribe(res =>{
+        console.log(res[1].city);
+        this.searchService.result = res;
+        console.log(this.searchService.result[0])
+        this.router.navigate(['search']);
+      });
+    }
+  }
 
 }

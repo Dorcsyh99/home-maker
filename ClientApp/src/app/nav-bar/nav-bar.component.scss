@@ -1,6 +1,6 @@
 .navbar{
   max-width: 100%;
-  padding: 2% 5%;
+  padding: 1% 5%;
   font-family: 'Montserrat', sans-serif;
   a{
     color: inherit;
@@ -25,11 +25,13 @@
       font-weight: 800;
       float: left;
       flex-grow: 3;
+      padding-top: 0.5%;
     }
     .menu{
       margin-left: 25%;
       flex-grow: 7;
       font-weight: 300;
+      padding-top: 0.5%;
       li{
         float: left;
         list-style: none;
@@ -41,10 +43,11 @@
       padding-left: 15%;
       font-weight: 500;
       li:first-child{
-        margin-right: 25%;
+        margin-right: 20%;
       }
       li:last-child{
         color: darkgreen;
+        padding: 0;
       }
     }
   }

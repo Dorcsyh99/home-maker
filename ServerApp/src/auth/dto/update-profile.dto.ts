@@ -23,4 +23,6 @@ export class UpdateProfileDto {
 
     @MinLength(0)
     additionalFields: string[];
+
+    avatarUrl: string;
 }
