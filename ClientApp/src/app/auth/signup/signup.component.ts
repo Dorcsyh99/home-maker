@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
 export class SuccessfulRegistrationComponent{
 
   ngOnInit(){
-    window.location.reload();
+
   }
 
 }

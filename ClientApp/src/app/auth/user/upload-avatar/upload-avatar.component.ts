@@ -18,17 +18,21 @@ export class UploadAvatarComponent implements OnInit {
   }
 
   selectedFile: ImageSnippet | undefined;
-  userId: string = this.authService.getUserId();
+
+
 
   constructor(private authService: AuthService){}
 
   processFile(imageInput: any){
     const file: File = imageInput.files[0];
     const reader = new FileReader();
+    const userId = localStorage.getItem("userId");
+
+    console.log(userId);
 
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.authService.uploadAvatar(this.userId, this.selectedFile.file).subscribe( (res: any) => {
+      this.authService.uploadAvatar(userId as string, this.selectedFile.file).subscribe( (res: any) => {
           console.log("success ", res);
         })
     });

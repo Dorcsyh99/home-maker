@@ -9,7 +9,8 @@ import { Body,
     Req,
     Param,
     UseInterceptors,
-    UploadedFile, 
+    UploadedFile,
+    Put, 
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthService } from './auth.service';
@@ -21,6 +22,7 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import { User } from './interfaces/user.interface';
 import { MulterModule } from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
+import moment from 'moment';
 
 @Controller('api/auth')
 export class AuthController {
@@ -44,21 +46,20 @@ export class AuthController {
 
     @UseGuards(JwtAuthGuard)
     @Patch('/update/:id')
-    async updateProfile(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
+    async updateProfile(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto): Promise<User> {
         return await this.authService.updateProfile(id, updateProfileDto)
     }
 
-    @Patch(':id/avatar')
+    @Put('/avatar/:id')
     @UseInterceptors(
         FileInterceptor('file',
         {
             storage: diskStorage({
                 destination: './images',
                 filename: (req, file, cb) => {
-                    const dateDate = new Date().toLocaleDateString().split(".").join("");
-                    const dateTime = new Date().toLocaleTimeString().split(":").join("");
+                    const string = "valamirandomfaszsag";
                     const shortName = file.originalname.split('.');
-                    return cb(null, `${(shortName[0])}${"_"}${dateDate}${dateTime}${".jpg"}`);
+                    return cb(null, `${(shortName[0])}${"_"}${string}${".jpg"}`);
                     }
                 })
         }))

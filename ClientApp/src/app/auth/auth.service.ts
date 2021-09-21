@@ -108,7 +108,7 @@ export class AuthService {
     const formData = new FormData();
 
     formData.append('file', image);
-    return this.http.post(`${'http://localhost:3000/api/auth/'}${userId}${"/avatar"}`, formData);
+    return this.http.put(`${'http://localhost:3000/api/auth/avatar/'}${userId}`, formData);
   }
 
 

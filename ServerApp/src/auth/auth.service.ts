@@ -66,18 +66,28 @@ export class AuthService {
         return currentUser;
     }
 
-    async updateProfile(id: string, updateProfileDto: UpdateProfileDto): Promise<void> {
+    async updateProfile(id: string, updateProfileDto: UpdateProfileDto): Promise<User> {
         try {
-            await this.userModel.findByIdAndUpdate(id, updateProfileDto).exec()
+            const user = await this.userModel.findByIdAndUpdate(id, updateProfileDto);
+            return user;
         } catch (error) {
             throw error;
         }
     }
 
-    public async setAvatar(userId: string, avatarUrl: string): Promise<void>{
+    async setAvatar(userId: string, avatarUrl: string): Promise<void>{
         console.log("User: ", userId);
         console.log("avatar: ", avatarUrl);
-        await this.userModel.findByIdAndUpdate(userId, {avatar: avatarUrl}).exec();
+        let user = "ObjectId('";
+        user+=userId;
+        user+="')";
+        console.log(user);
+        try {
+            await this.userModel.findByIdAndUpdate(user, {$set: {avatar: avatarUrl, firstName: "Tünde"}}, {new: true, useFindAndModify: true});
+            console.log("done something here");
+        } catch (error) {
+            throw error;
+        }
         console.log("done upload");
     }
 
