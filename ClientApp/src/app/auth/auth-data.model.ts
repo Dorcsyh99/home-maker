@@ -21,6 +21,7 @@ export interface LoginData {
 
 export interface LoggedInUser{
   email: string;
+  avatar: string;
   /*password: string;
   firstName: string;
   lastName: string;

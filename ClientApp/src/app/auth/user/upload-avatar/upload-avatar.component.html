@@ -1,6 +1,9 @@
 <div class="container">
   <mat-card>
     <input #imageInput type="file" class="file-input" accept="image/*" #fileUpload>
+    <div class="picked-image">
+      <img src= "">
+    </div>
       <button (click)="processFile(imageInput)">Feltöltés</button>
   </mat-card>
 </div>

@@ -10,7 +10,8 @@ import { Body,
     Param,
     UseInterceptors,
     UploadedFile,
-    Put, 
+    Put,
+    Res, 
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthService } from './auth.service';
@@ -23,6 +24,8 @@ import { User } from './interfaces/user.interface';
 import { MulterModule } from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
 import moment from 'moment';
+import path, { parse } from 'path';
+import {v1 as uuidv1} from 'uuid';
 
 @Controller('api/auth')
 export class AuthController {
@@ -39,9 +42,10 @@ export class AuthController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get('/me')
-    getMe(@Request() req) {
-        return req.user;
+    @Get(':id')
+    async find(@Param('id') id: string){
+        console.log(id);
+        return await this.authService.findOne(id);
     }
 
     @UseGuards(JwtAuthGuard)
@@ -50,24 +54,29 @@ export class AuthController {
         return await this.authService.updateProfile(id, updateProfileDto)
     }
 
-    @Put('/avatar/:id')
+    @Get('/avatar/:id')
+    async fetchAvatar(@Param('id') id: string): Promise<any> {
+        return await this.authService.fetchAvatar(id);
+    }
+
+    @Post('/avatar/:id')
     @UseInterceptors(
         FileInterceptor('file',
         {
             storage: diskStorage({
                 destination: './images',
                 filename: (req, file, cb) => {
-                    const string = "valamirandomfaszsag";
-                    const shortName = file.originalname.split('.');
-                    return cb(null, `${(shortName[0])}${"_"}${string}${".jpg"}`);
-                    }
-                })
+                  const filename: string = parse(file.originalname).name + uuidv1();
+                  const extension: string = parse(file.originalname).ext;
+                  
+                  cb(null, `images/${filename}${extension}`);
+            }})
         }))
     async uploadAvatar(@Param('id') userId: string, @UploadedFile() file){
         console.log(file);
-        const filePath = file.path;
+        const filePath = file.filename;
         console.log(filePath);
-        return await this.authService.setAvatar(userId, file.path);
+        return await this.authService.setAvatar(userId, filePath);
     }
     
 

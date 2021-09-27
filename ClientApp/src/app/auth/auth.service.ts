@@ -94,21 +94,26 @@ export class AuthService {
       });
   }
 
-  getUser(auth_token: string){
+  getUser(auth_token: string, id: string){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
     return this.http.get<{
       email: string,
-    }>("http://localhost:3000/api/auth/me", {headers: headers});
+      avatar: string
+    }>(`http://localhost:3000/api/auth/${id}`, {headers: headers});
   }
 
   uploadAvatar(userId: string, image: File): Observable<any>{
     const formData = new FormData();
 
     formData.append('file', image);
-    return this.http.put(`${'http://localhost:3000/api/auth/avatar/'}${userId}`, formData);
+    return this.http.post(`${'http://localhost:3000/api/auth/avatar/'}${userId}`, formData);
+  }
+
+  fetchAvatar(id: string){
+    return this.http.get(`${'http://localhost:3000/api/auth/avatar/'}${id}`);
   }
 
 

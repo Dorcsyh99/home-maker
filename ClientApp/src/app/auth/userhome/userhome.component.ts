@@ -14,6 +14,7 @@ export class UserhomeComponent implements OnInit {
   public id = localStorage.getItem("userId");
   public userData!: LoggedInUser;
   public token = localStorage.getItem('token');
+  public avatar!: string;
 
 
   constructor(public authService: AuthService) {
@@ -22,13 +23,22 @@ export class UserhomeComponent implements OnInit {
 
   ngOnInit() {
     console.log("token on userhome: ", this.token);
-    this.authService.getUser(this.token as string).subscribe(user => {
+    this.authService.getUser(this.token as string, this.id as string).subscribe(user => {
       this.userData = {
         email: user.email,
+        avatar: user.avatar
       }
       console.log(this.userData);
     });
+    this.fetchAvatar(this.id as string);
+    console.log("avatar on frontend: ", this.avatar);
   }
 
+
+  fetchAvatar(userId: string){
+    console.log("entered hereeee");
+    let avatar = this.authService.fetchAvatar(userId);
+    console.log(avatar);
+  }
 
 }

@@ -14,6 +14,8 @@ class ImageSnippet {
 })
 export class UploadAvatarComponent implements OnInit {
 
+  public imageName!: string;
+
   ngOnInit(): void {
   }
 
@@ -25,6 +27,7 @@ export class UploadAvatarComponent implements OnInit {
 
   processFile(imageInput: any){
     const file: File = imageInput.files[0];
+    this.imageName = file.name;
     const reader = new FileReader();
     const userId = localStorage.getItem("userId");
 

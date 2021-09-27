@@ -10,6 +10,8 @@ import { User } from './interfaces/user.interface';
 import { MongoError } from 'mongodb';
 import { AuthLogintDto } from './dto/user-login.dto';
 
+var ObjectID = require('mongodb').ObjectID;
+
 @Injectable()
 export class AuthService {
     constructor(@InjectModel('User') private userModel: Model<User>,
@@ -34,13 +36,14 @@ export class AuthService {
 
     async signIn(authLoginDto: AuthLogintDto) {
         const user = await this.validateUser(authLoginDto);
-        const payload = {sub: user.id, email: user.email};
+        const payload = {sub: user.id, email: user.email, avatar: user.avatar};
 
         return {
             accessToken: this.jwtService.sign(payload),
             expiresIn: '7200',
             userId: payload.sub,
-            userName: payload.email
+            userName: payload.email,
+            userAvatar: payload.avatar
         };
     }
 
@@ -66,6 +69,12 @@ export class AuthService {
         return currentUser;
     }
 
+    async findOne(id: string): Promise<User> {
+        const user = await this.userModel.findById(ObjectID(id)).exec();
+        console.log(user);
+        return user;
+      }
+
     async updateProfile(id: string, updateProfileDto: UpdateProfileDto): Promise<User> {
         try {
             const user = await this.userModel.findByIdAndUpdate(id, updateProfileDto);
@@ -78,17 +87,21 @@ export class AuthService {
     async setAvatar(userId: string, avatarUrl: string): Promise<void>{
         console.log("User: ", userId);
         console.log("avatar: ", avatarUrl);
-        let user = "ObjectId('";
-        user+=userId;
-        user+="')";
-        console.log(user);
         try {
-            await this.userModel.findByIdAndUpdate(user, {$set: {avatar: avatarUrl, firstName: "Tünde"}}, {new: true, useFindAndModify: true});
+            await this.userModel.updateOne({_id: ObjectID(userId)}, {$set: {avatar: avatarUrl, firstName: "Tünde"}}, {new: true, useFindAndModify: true});
             console.log("done something here");
         } catch (error) {
             throw error;
         }
         console.log("done upload");
+    }
+
+    async fetchAvatar(id: string): Promise<any>{
+        const user = await this.userModel.findOne({_id: ObjectID(id)}).exec();
+        const avatarFilePath = user.avatar;
+        console.log("user: ", user);
+        console.log("avatar: ", avatarFilePath);
+        return avatarFilePath;
     }
 
 

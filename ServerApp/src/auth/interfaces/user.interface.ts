@@ -8,5 +8,6 @@ export interface User extends Document {
     readonly firstName: string;
     readonly lastName: string;
     readonly phone: number;
-    readonly city: string; 
+    readonly city: string;
+    readonly avatar: string; 
 }
