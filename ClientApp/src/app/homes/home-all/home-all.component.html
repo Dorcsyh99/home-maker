@@ -1,3 +1,46 @@
+<mat-card class="search-container search-engine">
+  <div class="search">
+    <form>
+      <p>Város</p>
+      <input type="text" name="city">
+      <input type="text" name="city2">
+      <hr>
+      <p>Ingatlan típusa</p>
+      <button mat-button>Eladó</button>
+      <button mat-button>Kiadó</button>
+      <hr>
+      <p>Szobák száma</p>
+      <button mat-button>Mindegy</button>
+      <button mat-button>1</button>
+      <button mat-button>2</button>
+      <button mat-button>3</button>
+      <button mat-button>4+</button>
+      <hr>
+      <p>Méret</p>
+      <input type="number" name="sizeMin">
+      <input type="number" name="sizeMax">
+      <hr>
+      <p>Ár</p>
+      <input type="number" name="price">
+      <hr>
+      <p>Állapot</p>
+      <input type="text" name="condition">
+      <hr>
+      <p>Fűtés típusa</p>
+      <input type="text" name="heating">
+      <hr>
+      <p>Parkolás</p>
+      <input type="text" name="parking">
+      <hr>
+      <p>Egyéb preferenciák</p>
+      <input type="checkbox" name="garden">
+      <input type="checkbox" name="elevator">
+      <input type="checkbox" name="attic">
+      <input type="checkbox" name="pet">
+      <input type="checkbox" name="smoke">
+    </form>
+  </div>
+</mat-card>
 <div class="card-container">
   <div class="card" *ngFor="let home of homes">
     <div class="top-side">

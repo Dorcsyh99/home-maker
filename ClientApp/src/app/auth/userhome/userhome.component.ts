@@ -30,14 +30,14 @@ export class UserhomeComponent implements OnInit {
       }
       console.log(this.userData);
     });
-    this.fetchAvatar(this.id as string);
+    this.fetchAvatar(this.userData.avatar as string);
     console.log("avatar on frontend: ", this.avatar);
   }
 
 
-  fetchAvatar(userId: string){
+  fetchAvatar(userAvatar: string){
     console.log("entered hereeee");
-    let avatar = this.authService.fetchAvatar(userId);
+    let avatar = this.authService.fetchAvatar(userAvatar);
     console.log(avatar);
   }
 

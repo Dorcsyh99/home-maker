@@ -23,9 +23,9 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import { User } from './interfaces/user.interface';
 import { MulterModule } from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
-import moment from 'moment';
-import path, { parse } from 'path';
+import path, { join, parse } from 'path';
 import {v1 as uuidv1} from 'uuid';
+import { createReadStream } from 'fs';
 
 @Controller('api/auth')
 export class AuthController {
@@ -55,8 +55,9 @@ export class AuthController {
     }
 
     @Get('/avatar/:id')
-    async fetchAvatar(@Param('id') id: string): Promise<any> {
-        return await this.authService.fetchAvatar(id);
+    async fetchAvatar(@Param('id') avatarId: string, @Res() res): Promise<any> {
+        const data = createReadStream(join(__dirname, avatarId));
+        data.pipe(res);
     }
 
     @Post('/avatar/:id')

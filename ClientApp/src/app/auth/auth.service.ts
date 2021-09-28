@@ -112,8 +112,8 @@ export class AuthService {
     return this.http.post(`${'http://localhost:3000/api/auth/avatar/'}${userId}`, formData);
   }
 
-  fetchAvatar(id: string){
-    return this.http.get(`${'http://localhost:3000/api/auth/avatar/'}${id}`);
+  fetchAvatar(avatar: string){
+    return this.http.get(`${'http://localhost:3000/api/auth/avatar/'}${avatar}`);
   }
 
 

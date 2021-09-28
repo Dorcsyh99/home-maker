@@ -1,14 +1,15 @@
+<mat-card class="side-panel">
+  <div class="profile-image"></div>
+  <div class="profile-menu">
+    <button mat-button>Adatok szerkesztése</button>
+    <button mat-button><a routerLink="../upload/avatar">Profilkép feltöltése</a></button>
+    <button mat-button>Barátok meghívása</button>
+    <button mat-button>Hírlevél</button>
+    <button mat-button>Beállítások</button>
+  </div>
+</mat-card>
 <div class="dashboard-container">
-  <mat-card class="side-panel">
-    <div class="profile-image"></div>
-    <div class="profile-menu">
-      <button mat-button>Adatok szerkesztése</button>
-      <button mat-button><a routerLink="../upload/avatar">Profilkép feltöltése</a></button>
-      <button mat-button>Barátok meghívása</button>
-      <button mat-button>Hírlevél</button>
-      <button mat-button>Beállítások</button>
-    </div>
-  </mat-card>
+  
   <mat-card class="function-panel">
     <img src="http://localhost:3000{{this.userData.avatar}}">
 

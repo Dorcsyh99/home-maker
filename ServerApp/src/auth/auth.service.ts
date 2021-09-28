@@ -96,13 +96,13 @@ export class AuthService {
         console.log("done upload");
     }
 
-    async fetchAvatar(id: string): Promise<any>{
+    /*async fetchAvatar(avatarId: string): Promise<any>{
         const user = await this.userModel.findOne({_id: ObjectID(id)}).exec();
         const avatarFilePath = user.avatar;
         console.log("user: ", user);
         console.log("avatar: ", avatarFilePath);
         return avatarFilePath;
-    }
+    }*/
 
 
 }
