@@ -2,63 +2,98 @@
   <div class="search">
     <form>
       <p>Város</p>
-      <input type="text" name="city">
-      <input type="text" name="city2">
+      <mat-form-field appearance="legacy">
+        <input name="city" matInput placeholder="Budapest, Szeged...">
+        <mat-icon matSuffix>city</mat-icon>
+      </mat-form-field>
+    
       <hr>
       <p>Ingatlan típusa</p>
-      <button mat-button>Eladó</button>
-      <button mat-button>Kiadó</button>
+      <button (click)="set('Típus', 'Eladó')" mat-button>Eladó</button>
+      <button (click)="set('Típus', 'Kiadó')" mat-button>Kiadó</button>
       <hr>
       <p>Szobák száma</p>
-      <button mat-button>Mindegy</button>
-      <button mat-button>1</button>
-      <button mat-button>2</button>
-      <button mat-button>3</button>
-      <button mat-button>4+</button>
+      <button (click)="set('Szoba', 1)" mat-button>1</button>
+      <button (click)="set('Szoba', 2)" mat-button>2</button>
+      <button (click)="set('Szoba', 3)" mat-button>3</button>
+      <button (click)="set('Szoba', 4)" mat-button>4+</button>
       <hr>
       <p>Méret</p>
-      <input type="number" name="sizeMin">
-      <input type="number" name="sizeMax">
+      <mat-form-field class="size" appearance="legacy" floatLabel="always">
+        <input matInput type="number" name="sizeMin" placeholder="Min">
+        <span matSuffix>nm</span>
+      </mat-form-field>
+      -
+      <mat-form-field class="size" appearance="legacy" floatLabel="always">
+        <input matInput type="number" name="sizeMax" placeholder="Max">
+        <span matSuffix>nm</span>
+      </mat-form-field>
       <hr>
       <p>Ár</p>
-      <input type="number" name="price">
+      <mat-form-field class="size" appearance="legacy" floatLabel="always">
+        <input matInput type="number" name="priceMin" placeholder="Min">
+        <span matSuffix>HUF</span>
+      </mat-form-field>
+      -
+      <mat-form-field class="size" appearance="legacy" floatLabel="always">
+        <input matInput type="number" name="priceMax" placeholder="Max">
+        <span matSuffix>HUF</span>
+      </mat-form-field>
       <hr>
       <p>Állapot</p>
-      <input type="text" name="condition">
+      <mat-form-field appearance="legacy">
+        <mat-select>
+          <mat-option *ngFor="let c of condition" [value]="c">
+            {{c}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <hr>
       <p>Fűtés típusa</p>
-      <input type="text" name="heating">
+      <mat-form-field appearance="legacy">
+        <mat-select>
+          <mat-option *ngFor="let c of heating" [value]="c">
+            {{c}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <hr>
       <p>Parkolás</p>
-      <input type="text" name="parking">
+      <mat-form-field appearance="legacy">
+        <mat-select>
+          <mat-option *ngFor="let c of parking" [value]="c">
+            {{c}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <hr>
       <p>Egyéb preferenciák</p>
-      <input type="checkbox" name="garden">
-      <input type="checkbox" name="elevator">
-      <input type="checkbox" name="attic">
-      <input type="checkbox" name="pet">
-      <input type="checkbox" name="smoke">
+      <mat-checkbox class="check-box">Kertes</mat-checkbox>
+      <mat-checkbox class="check-box">Erkélyes</mat-checkbox>
+      <mat-checkbox class="check-box">Van lift</mat-checkbox>
+      <mat-checkbox class="check-box">Kisállat hozható</mat-checkbox>
+      <mat-checkbox class="check-box">Dohányzás megengedett</mat-checkbox>
     </form>
   </div>
 </mat-card>
-<div class="card-container">
-  <div class="card" *ngFor="let home of homes">
-    <div class="top-side">
-      <!-- img a hatter rajta informaciok -->
-      <div class="house-img">
-        <span>{{home.size}}</span>
-        <span>{{home.size}}</span>
-        <span>{{home.price}}</span>
+<mat-card class="card-container">
+    <div class="card" *ngFor="let home of homes">
+      <div class="top-side">
+        <!-- img a hatter rajta informaciok -->
+        <div class="house-img">
+          <span>{{home.size}}</span>
+          <span>{{home.size}}</span>
+          <span>{{home.price}}</span>
+        </div>
+      </div>
+      <div class="middle-side">
+        <h2>{{home.city}}</h2>
+        <h3>{{home.address}}</h3>
+        <p></p>
+      </div>
+      <div class="bottom-side">
+        <button><a routerLink=""><mat-icon>favorite</mat-icon></a></button>
+        <button><a routerLink="../../home/get/{{home._id}}">Megnézem</a></button>
       </div>
     </div>
-    <div class="middle-side">
-      <h2>{{home.city}}</h2>
-      <h3>{{home.address}}</h3>
-      <p></p>
-    </div>
-    <div class="bottom-side">
-      <button><a routerLink=""><mat-icon>favorite</mat-icon></a></button>
-      <button><a routerLink="../../home/get/{{home._id}}">Megnézem</a></button>
-    </div>
-  </div>
-</div>
+</mat-card>

@@ -1,0 +1,37 @@
+.banner{
+    margin: 1% 5% 2% 5%;
+    height: 30%;
+    background-color: darkgreen;
+    text-align: center;
+    color: white;
+    h3{
+       font-weight: 800;
+       margin: 5% 0 3% 0;
+       font-size: 30px;
+    }
+    h4{
+        font-weight: 300;
+        font-size: 16px;
+    }
+
+}
+.side-bar-categories{
+    margin: 0 5% 3% 5%;
+    width: 20%;
+    padding: 2%;
+    p:first-child{
+        margin-bottom: 10%;
+    }
+    hr{
+        border: none;
+        background: darkgreen;
+        height: .5px;
+    }
+    float: left;
+}
+
+.expert-card-container{
+    width: 60%;
+    margin-left: 32%;
+    
+}

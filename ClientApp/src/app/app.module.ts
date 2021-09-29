@@ -20,6 +20,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -89,7 +91,9 @@ import { SavedHomesComponent } from './homes/saved-homes/saved-homes.component';
     MatTabsModule,
     MatStepperModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatSliderModule,
+    MatCheckboxModule
   ],
   providers: [
     {

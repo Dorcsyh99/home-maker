@@ -16,6 +16,12 @@ export class HomeAllComponent implements OnInit {
   currentIndex = -1;
   city: string = '';
 
+  rooms!: any;
+  type!: string;
+  condition = ['Újszerű', 'Felújtítandó', 'Újépítésű', 'Felújított'];
+  parking = ["Garázs", "Udvari beálló", "Utcán"];
+  heating = ['Gáz', 'Cirkó', 'Távfűtés', 'Elektromos', 'Padlófűtés', 'Falfűtés', 'Egyéb'];
+
   searchForm = new FormGroup({
     city: new FormControl(''), //text
     city2: new FormControl(''), //text
@@ -46,6 +52,18 @@ export class HomeAllComponent implements OnInit {
       console.log(this.homes[0]);
       console.log(this.homes[0]._id);
     });
+  }
+
+  set(attr: string, value: any): void{
+    if(attr === "Típus"){
+      this.type = value;
+    }
+    if(attr === "Szoba"){
+      if(value === 0){
+        this.rooms = null;
+      }
+      this.rooms = value;
+    }
   }
 
 

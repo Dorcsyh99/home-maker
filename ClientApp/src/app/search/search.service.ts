@@ -23,5 +23,7 @@ export class SearchService {
     return this.httpClient.get(`${baseURL}/${city}`);
   }
 
+  
+
 }
 

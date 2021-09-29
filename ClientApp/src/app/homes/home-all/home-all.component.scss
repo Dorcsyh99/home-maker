@@ -1,5 +1,6 @@
 .search-container{
   margin-top: 2%;
+  margin-left: 5%;
   position: fixed;
   top: 10%;
   bottom: 0;
@@ -16,11 +17,19 @@
     height: 2px;
     margin: 5% 0;
   }
+  .check-box{
+    width: 70%;
+  }
+  .size{
+    width: 40%;
+    margin: 0 2%;
+  }
 }
 
 .card-container{
-  max-width: 100%;
-  margin: 0;
+  margin-left: 30%;
+  margin-top: 1%;
+  max-width: 60%;
   padding: 3% 0 0 5%;
   color: #333;
   font-family: "Raleway", sans-serif;
