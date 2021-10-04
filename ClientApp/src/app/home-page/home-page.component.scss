@@ -98,11 +98,11 @@
         min-width: 50%;
         min-height: 50%;
         margin: 0;
-        background-color: rgba(255, 0, 0, 0.8);
+        background-color: rgba(24, 66, 22, 0.8);
         float: left;
         transition: .2s ease-in all;
         &:hover{
-          background: rgba(255, 0, 0, 0.5);
+          background: rgba(24, 66, 22, 0.5);
         }
         p{
           color: white;

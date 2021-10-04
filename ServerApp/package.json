@@ -40,6 +40,7 @@
     "hbs": "^4.1.2",
     "moment": "^2.29.1",
     "mongoose": "^5.13.1",
+    "mongoose-paginate-v2": "^1.4.2",
     "multer": "^1.4.3",
     "passport": "^0.4.1",
     "passport-firebase-jwt": "^1.1.0",

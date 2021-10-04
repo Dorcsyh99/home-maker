@@ -48,4 +48,6 @@ export class Home {
   smoke: boolean;
 }
 
+
+
 export const HomeSchema = SchemaFactory.createForClass(Home);

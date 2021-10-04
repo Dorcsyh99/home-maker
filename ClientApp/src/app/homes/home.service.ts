@@ -15,7 +15,7 @@ export class HomeService {
 
   //home/  -Get all
   readAll(): Observable<any> {
-    return this.httpClient.get(baseURL);
+    return this.httpClient.get(`http://localhost:3000/home/all`);
   }
 
   //home/:id  - Get one

@@ -1,9 +1,10 @@
-import { Controller, Post, Body, Get, Param, Patch, Req, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Patch, Query, Req, Delete, UseGuards } from '@nestjs/common';
 import {HomeService} from './home.service';
 import { createHomeDto } from './createHomeDto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { User } from 'src/auth/interfaces/user.interface';
 import { CurrentUser } from 'src/auth/decorators/currentuser.decorator';
+import { PaginationParams } from './paginationParams';
 @Controller('home')
 export class HomesController {
 
@@ -18,9 +19,9 @@ export class HomesController {
         return home;
     }
 
-    @Get()
-    async findAll(){
-        return this.homeService.findAll();
+    @Get("/all")
+    async findAll(@Query() limit: number){
+        return this.homeService.findAll(limit);
     }
 
     @Get(':id')

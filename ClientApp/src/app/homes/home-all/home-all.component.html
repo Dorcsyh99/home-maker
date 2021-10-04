@@ -6,7 +6,7 @@
         <input name="city" matInput placeholder="Budapest, Szeged...">
         <mat-icon matSuffix>city</mat-icon>
       </mat-form-field>
-    
+
       <hr>
       <p>Ingatlan típusa</p>
       <button (click)="set('Típus', 'Eladó')" mat-button>Eladó</button>
@@ -76,8 +76,8 @@
     </form>
   </div>
 </mat-card>
-<mat-card class="card-container">
-    <div class="card" *ngFor="let home of homes">
+<div class="card-container">
+    <mat-card class="card" *ngFor="let home of homes">
       <div class="top-side">
         <!-- img a hatter rajta informaciok -->
         <div class="house-img">
@@ -95,5 +95,5 @@
         <button><a routerLink=""><mat-icon>favorite</mat-icon></a></button>
         <button><a routerLink="../../home/get/{{home._id}}">Megnézem</a></button>
       </div>
-    </div>
-</mat-card>
+    </mat-card>
+</div>

@@ -20,8 +20,10 @@ export class HomeService {
 		return createdHome.save();
 	}
 
-	async findAll(): Promise<Home[]> {
-		return this.homeModel.find().exec();
+	async findAll(limit?: number) {
+		const query = this.homeModel.find();
+		const results = await query.limit(limit);
+		return results;
 	}
 
 	async findOne(id: string): Promise<Home> {
