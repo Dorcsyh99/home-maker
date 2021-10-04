@@ -6,7 +6,16 @@ import { Home, HomeSchema } from './home.model';
 import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-	imports: [MongooseModule.forFeature([{name: Home.name, schema: HomeSchema}]),
+	imports: [MongooseModule.forFeatureAsync([
+		{
+			name: Home.name, 
+			useFactory: () => {
+				const schema = HomeSchema;
+				schema.plugin(require('mongoose-paginate'));
+				return schema;
+			}
+		}
+	]),
 			AuthModule,
 		],
 	controllers: [HomesController],

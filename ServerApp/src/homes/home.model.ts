@@ -1,6 +1,7 @@
 import {Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { User } from 'src/auth/interfaces/user.interface';
+import mongoosePaginate from 'mongoose-paginate';
 
 export type HomeDocument = Home & Document;
 
@@ -49,3 +50,7 @@ export class Home {
 }
 
 export const HomeSchema = SchemaFactory.createForClass(Home);
+
+
+
+
