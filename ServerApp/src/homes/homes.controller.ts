@@ -4,7 +4,7 @@ import { createHomeDto } from './createHomeDto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { User } from 'src/auth/interfaces/user.interface';
 import { CurrentUser } from 'src/auth/decorators/currentuser.decorator';
-import { PaginationParams } from './paginationParams';
+
 @Controller('home')
 export class HomesController {
 
