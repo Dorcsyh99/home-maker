@@ -7,16 +7,10 @@
     <p>Kiválasztott kategóriák:</p>
     <hr>
     <p>Összes kategória</p>
-    <button mat-button>Tetőfedő</button>
-    <button mat-button>Villanyszerelő</button>
-    <button mat-button>Vízvezetékszerelő</button>
-    <button mat-button>Lakatos</button>
-    <button mat-button>Asztalos</button>
-    <button mat-button>Festő - mázoló</button>
-    <button mat-button>Kertész</button>
-    <button mat-button>Takarító</button>
-    <button mat-button>Autószerelő</button>
-    <button mat-button>Egyéb</button>
+    <button *ngFor="let field of fields" mat-button>{{field}}</button>
+    <hr>
+    <p>Megye</p>
+    <button *ngFor="let county of counties" mat-button>{{county}} megye</button>
 </mat-card>
 <mat-card class="expert-card-container">
     <mat-card class="expert-card">

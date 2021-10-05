@@ -19,6 +19,11 @@ export class HomePageComponent implements OnInit {
     type: new FormControl(''),
   });
 
+  expertMiniSearch = new FormGroup({
+    city: new FormControl(''),
+    field: new FormControl('')
+  });
+
   constructor(private authService: AuthService, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {

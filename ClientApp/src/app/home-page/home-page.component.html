@@ -58,27 +58,61 @@
   <app-home-featured></app-home-featured>
 </section>
 <section class="experts-section">
-    <div class="information-container">
+  <mat-card class="information-container">
+    <div class="information">
       <h1>Minden egy helyen</h1>
       <h3>Keressen szakembereket minden szakterületről, az egész ország területén. A Home Maker-en megtalálható szakemberek megbízhatóak, elérhetőek és várják hívását!</h3>
-      <div class="common-searches">
-        <p>Gyakori keresések:</p>
-        <p>Budapest, Vízvezetékszerelő</p>
-        <p>Budapest, Asztalos</p>
-        <p>Győr, Tetőfedő</p>
+      <div class="mini-search">
+        <form [formGroup]="expertMiniSearch" >
+          <mat-form-field class="input" appearance="outline">
+            <mat-label>Város</mat-label>
+            <input matInput id="city" type="text" formControlName="city">
+          </mat-form-field>
+          <mat-form-field class="input" appearance="outline">
+            <mat-label>Szakterület</mat-label>
+            <input matInput id="field" type="text" formControlName="field">
+          </mat-form-field>
+          <button mat-button>Keresés</button>
+        </form>
       </div>
     </div>
     <div class="experts-card-container">
       <!-- lehet slideshow is a kártyákból-->
       <h3>Legjobbra értékelt szakembereink</h3>
-      <div class="card">
-        <div class="image-container"></div>
-        <h3>Szabó Tamás</h3>
-        <h3>Villanyszerelő</h3>
+      <mat-card class="card">
+        <img>
+        <h4>Szabó Tamás</h4>
+        <h4>Villanyszerelő</h4>
         <p class="best-ranking-desc">Értékelés szövege</p>
         <button>Profil megtekintése</button>
         <button>Email küldése</button>
-      </div>
+      </mat-card>
+      <mat-card class="card">
+        <img>
+        <h4>Szabó Tamás</h4>
+        <h4>Villanyszerelő</h4>
+        <p class="best-ranking-desc">Értékelés szövege</p>
+        <button>Profil megtekintése</button>
+        <button>Email küldése</button>
+      </mat-card>
+      <mat-card class="card">
+        <img>
+        <h4>Szabó Tamás</h4>
+        <h4>Villanyszerelő</h4>
+        <p class="best-ranking-desc">Értékelés szövege</p>
+        <button>Profil megtekintése</button>
+        <button>Email küldése</button>
+      </mat-card>
+      <mat-card class="card">
+        <img>
+        <h4>Szabó Tamás</h4>
+        <h4>Villanyszerelő</h4>
+        <p class="best-ranking-desc">Értékelés szövege</p>
+        <button>Profil megtekintése</button>
+        <button>Email küldése</button>
+      </mat-card>
     </div>
+  </mat-card>
+    
 </section>
 <section class="reviews-section"></section>
