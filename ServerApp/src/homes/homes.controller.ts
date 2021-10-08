@@ -20,8 +20,8 @@ export class HomesController {
     }
 
     @Get("/all")
-    async findAll(@Query() limit: number){
-        return this.homeService.findAll(limit);
+    async findAll(){
+        return this.homeService.findAll();
     }
 
     @Get(':id')

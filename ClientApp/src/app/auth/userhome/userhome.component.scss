@@ -1,0 +1,93 @@
+.side-panel{
+    position: absolute;
+    height: 75%;
+    top: 15%;
+    left: 5%;
+    width: 15%;
+    .profile-image{
+        height: 15%;
+    }
+    .profile-menu{
+        p{
+            text-align: center;
+            padding: 2% 0;
+            a{
+                text-decoration: none;
+                color: mediumseagreen;
+                transition: .2s all ease;
+                &:hover{
+                    color: seagreen;
+                }
+            }
+        }
+    }
+}
+
+.dashboard-container{
+    margin-left: 25%;
+    margin-top: 1%;
+    max-width: 70%;
+    .saved-homes{
+        margin: 0 0 5% 0;
+        max-width: 60%;
+        float: left;
+        padding: 3% 2%;
+        h3{
+            font-weight: 700;
+            font-size: 20px;
+        }
+        .saved-home-card{
+            max-width: 27%;
+            margin: 0 1%;
+            height: auto;
+            padding: 0;
+            float: left;
+            img{
+                width: 100%;                
+            }
+            .texts{
+                padding: 5%;
+                h3{
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 15px;
+                }
+                h4{
+                    font-weight: 500;
+                    line-height: 15px;
+                }
+                p{
+                    display: inline;
+                    padding-right: 10%;
+                }
+            }
+        }
+        button{
+            margin-top: 10%;
+            clear: both;
+        }
+    }
+    .my-homes{
+        margin-left: 65%;
+        width: 32%;
+        height: 500px;
+        margin-bottom: 5%;
+        padding: 3% 2%;
+        h3{
+            font-weight: 800;
+            font-size: 20px;
+        }
+        .my-home-card{
+            padding: 0;
+            img{
+                width: 100%;
+            }
+            .my-home-text{
+                padding: 5%;
+            }
+        }
+    }
+    .ratings{
+        clear: both;
+    }
+}

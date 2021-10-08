@@ -1,21 +1,63 @@
 <mat-card class="side-panel">
-  <div class="profile-image"></div>
+  <div class="profile-image"><img src="http://localhost:3000{{this.userData.avatar}}"></div>
   <div class="profile-menu">
-    <button mat-button>Adatok szerkesztése</button>
-    <button mat-button><a routerLink="../upload/avatar">Profilkép feltöltése</a></button>
-    <button mat-button>Barátok meghívása</button>
-    <button mat-button>Hírlevél</button>
-    <button mat-button>Beállítások</button>
+    <p mat-button>Adatok szerkesztése</p>
+    <p mat-button><a routerLink="../upload/avatar">Profilkép feltöltése</a></p>
+    <p mat-button>Barátok meghívása</p>
+    <p mat-button>Hírlevél</p>
+    <p mat-button>Beállítások</p>
   </div>
 </mat-card>
 <div class="dashboard-container">
-  
-  <mat-card class="function-panel">
-    <img src="http://localhost:3000{{this.userData.avatar}}">
-
+  <!-- Saját ingatlanok, mentett ingatlanok, értékeléseim (amiket adtam), árfigyelő, ajánlások, hirek -->
+  <mat-card class="saved-homes">
+    <h3>Mentett Otthonok</h3>
+    <mat-card class="saved-home-card">
+      <img src="../../../assets/img/interior-bg.jpg">
+      <div class="texts">
+        <h3>Budapest, XII.</h3>
+        <h4>Győri út 14.</h4>
+        <p>45000000 Ft.</p>
+        <p>65 nm</p>
+      </div>
+    </mat-card>
+    <mat-card class="saved-home-card">
+      <img src="../../../assets/img/interior-bg.jpg">
+      <div class="texts">
+        <h3>Budapest, XII.</h3>
+        <h4>Győri út 14.</h4>
+        <p>45000000 Ft.</p>
+        <p>65 nm</p>
+      </div>
+    </mat-card>
+    <mat-card class="saved-home-card">
+      <img src="../../../assets/img/interior-bg.jpg">
+      <div class="texts">
+        <h3>Budapest, XII.</h3>
+        <h4>Győri út 14.</h4>
+        <p>45000000 Ft.</p>
+        <p>65 nm</p>
+      </div>
+    </mat-card>
+    <button mat-button>Összes</button>
   </mat-card>
-  <mat-card class="function-panel"></mat-card>
-  <mat-card class="function-panel"></mat-card>
-  <mat-card class="function-panel"></mat-card>
-  <mat-card class="big-panel"></mat-card>
+  <mat-card class="my-homes">
+    <h3>Feltöltött ingatlanok</h3>
+    <mat-card class="my-home-card">
+      <img src="../../../assets/img/lotof-houses.jpg">
+      <div class="my-home-text">
+        <p>Budapest, XIX, Petőfi utca 4/A</p>
+        <p><span>Megtekintések:</span>17</p>
+        <p><span>Mentések:</span>3</p>
+        <p><span>Jelenlegi ár:</span>35000000 Ft</p>
+        <p><span>Kedő ár:</span>38000000 Ft</p>
+        <button mat-button>Részletek</button>
+      </div>
+    </mat-card>
+  </mat-card>
+  <mat-card class="ratings">
+    
+  </mat-card>
+  <mat-card class="price-panel"></mat-card>
+  <mat-card class="recommendations"></mat-card>
 </div>

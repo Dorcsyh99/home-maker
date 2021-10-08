@@ -55,8 +55,8 @@ export class AuthController {
     }
 
     @Get('/avatar/:id')
-    async fetchAvatar(@Param('id') avatarId: string, @Res() res): Promise<any> {
-        const data = createReadStream(join(__dirname, avatarId));
+    async fetchAvatar(@Param('id') avatarId: string, @Res() res) {
+        const data = createReadStream(join(process.cwd(), avatarId));
         data.pipe(res);
     }
 
