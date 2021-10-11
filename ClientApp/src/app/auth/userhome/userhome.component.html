@@ -1,5 +1,8 @@
 <mat-card class="side-panel">
-  <div class="profile-image"><img src="http://localhost:3000{{this.userData.avatar}}"></div>
+  <div class="profile-image">
+    <img src="http://localhost:3000{{this.avatar}}">
+    <div><h4>Üdv, <span>{{this.firstName}}</span>!</h4></div>
+  </div>
   <div class="profile-menu">
     <p mat-button>Adatok szerkesztése</p>
     <p mat-button><a routerLink="../upload/avatar">Profilkép feltöltése</a></p>
@@ -56,7 +59,7 @@
     </mat-card>
   </mat-card>
   <mat-card class="ratings">
-    
+
   </mat-card>
   <mat-card class="price-panel"></mat-card>
   <mat-card class="recommendations"></mat-card>

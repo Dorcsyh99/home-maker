@@ -22,7 +22,7 @@ export class AuthService {
         const id = new Types.ObjectId();
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = new this.userModel({_id: id, firstName: firstName, lastName: lastName, email: email, password: hashedPassword, role: role});        
+        const user = new this.userModel({_id: id, firstName: firstName, lastName: lastName, email: email, password: hashedPassword});        
 
         try {
             return await user.save();            
@@ -36,14 +36,16 @@ export class AuthService {
 
     async signIn(authLoginDto: AuthLogintDto) {
         const user = await this.validateUser(authLoginDto);
-        const payload = {sub: user.id, email: user.email, avatar: user.avatar};
+        const payload = {sub: user.id, email: user.email, avatar: user.avatar, firstName: user.firstName, lastName: user.lastName, };
 
         return {
             accessToken: this.jwtService.sign(payload),
             expiresIn: '7200',
             userId: payload.sub,
             userName: payload.email,
-            userAvatar: payload.avatar
+            userAvatar: payload.avatar,
+            userFirstName: payload.firstName,
+            userLastName: payload.lastName
         };
     }
 
@@ -66,6 +68,7 @@ export class AuthService {
 
     async getCurrentUser(email: string): Promise<User> {
         const currentUser = await this.userModel.findOne({ email }).exec();
+        console.log("Current user: ", currentUser);
         return currentUser;
     }
 
@@ -75,10 +78,11 @@ export class AuthService {
         return user;
       }
 
-    async updateProfile(id: string, updateProfileDto: UpdateProfileDto): Promise<User> {
+    async updateProfile(id: string, updateQuery: UpdateProfileDto): Promise<void> {
+        console.log("elértünk ide! updateProfile. Update query: ", id, updateQuery);
         try {
-            const user = await this.userModel.findByIdAndUpdate(id, updateProfileDto);
-            return user;
+            await this.userModel.updateOne({_id: ObjectID(id)}, {$set: {$inc: {updatedHomeCount: 1}, $push: {updatedHomes: updateQuery.uploadedHomes}}}, {new: false, useFindAndModify: true});;
+            console.log("update doneee");
         } catch (error) {
             throw error;
         }
@@ -88,7 +92,7 @@ export class AuthService {
         console.log("User: ", userId);
         console.log("avatar: ", avatarUrl);
         try {
-            await this.userModel.updateOne({_id: ObjectID(userId)}, {$set: {avatar: avatarUrl, firstName: "Tünde"}}, {new: true, useFindAndModify: true});
+            await this.userModel.updateOne({_id: ObjectID(userId)}, {$set: {avatar: avatarUrl}}, {new: true, useFindAndModify: true});
             console.log("done something here");
         } catch (error) {
             throw error;

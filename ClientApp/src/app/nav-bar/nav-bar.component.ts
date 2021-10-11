@@ -1,5 +1,6 @@
 import { Component, Injectable, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { NavbarService } from './navbar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,17 +11,26 @@ import { AuthService } from '../auth/auth.service';
 @Injectable({ providedIn: "root"})
 export class NavBarComponent implements OnInit {
 
-  isLoggedIn = this.authservice.getIsAuth();
+  private isLoggedIn: boolean = this.authservice.getIsAuthenticated();
 
-  constructor(private authservice: AuthService) { }
+  constructor(private authservice: AuthService) {
+  }
 
   ngOnInit(): void {
 
   }
 
-  isAuthenticated: boolean = this.authservice.getIsAuth();
+  public getIsLoggedIn(){
+    console.log(this.authservice.getIsAuthenticated());
+    return this.authservice.getIsAuthenticated();
+  }
+
+  public setIsLoggedIn(value: boolean){
+    this.authservice.setIsLoggedIn(value);
+  }
 
   logOut(){
+    this.setIsLoggedIn(false);
     this.authservice.logout();
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { LoggedInUser } from '../auth-data.model';
-import { Subscription } from 'rxjs';
+import { HomeService } from 'src/app/homes/home.service';
 
 @Component({
   selector: 'app-userhome',
@@ -10,35 +9,24 @@ import { Subscription } from 'rxjs';
 })
 export class UserhomeComponent implements OnInit {
 
+  //gettereket csinalni és privatta tenni ezeket
   public user = localStorage.getItem("userName");
   public id = localStorage.getItem("userId");
-  public userData!: LoggedInUser;
   public token = localStorage.getItem('token');
-  public avatar!: string;
+  public avatar = localStorage.getItem("userAvatar");
+  public firstName = localStorage.getItem("userFirstName");
+  public lastName = localStorage.getItem("userLastName");
 
 
-  constructor(public authService: AuthService) {
+  constructor(private authService: AuthService, private homeService: HomeService) {
 
   }
 
   ngOnInit() {
-    console.log("token on userhome: ", this.token);
-    this.authService.getUser(this.token as string, this.id as string).subscribe(user => {
-      this.userData = {
-        email: user.email,
-        avatar: user.avatar
-      }
-      console.log(this.userData);
-    });
-    this.fetchAvatar(this.userData.avatar as string);
-    console.log("avatar on frontend: ", this.avatar);
   }
 
+  getUsersHomes(){
 
-  fetchAvatar(userAvatar: string){
-    console.log("entered hereeee");
-    let avatar = this.authService.fetchAvatar(userAvatar);
-    console.log(avatar);
   }
 
 }

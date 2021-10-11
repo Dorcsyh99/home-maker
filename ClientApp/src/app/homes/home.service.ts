@@ -27,8 +27,13 @@ export class HomeService {
   create(data: Home){
     console.log("Data: ", data);
     return this.httpClient.post("http://localhost:3000/home/create", data).subscribe(res => {
+      console.log("visszaértünk a frontendre a dataval");
       this.router.navigate(['/']);
     });
+  }
+
+  getHomesOfUser(id: string){
+
   }
 
   //home/:id  - Patch (update)

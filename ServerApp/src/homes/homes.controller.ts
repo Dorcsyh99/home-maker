@@ -4,11 +4,12 @@ import { createHomeDto } from './createHomeDto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { User } from 'src/auth/interfaces/user.interface';
 import { CurrentUser } from 'src/auth/decorators/currentuser.decorator';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('home')
 export class HomesController {
 
-    constructor(private homeService: HomeService) {}
+    constructor(private homeService: HomeService, private authService: AuthService) {}
 
     @UseGuards(JwtAuthGuard)
     @Post('/create')

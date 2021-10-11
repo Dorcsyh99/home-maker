@@ -1,13 +1,29 @@
 .side-panel{
     position: absolute;
     height: 75%;
-    top: 15%;
+    top: 0;
+    margin-top: 10%;
     left: 5%;
     width: 15%;
     .profile-image{
-        height: 15%;
+        padding-bottom: 5%;
+        img{
+          width: 100%;
+          border-radius: 20%;
+        }
+        h4{
+          font-weight: 600;
+          margin: 10% 0;
+          font-size: 18px;
+          text-align: center;
+          span{
+            font-weight: 800;
+            color: mediumseagreen;
+          }
+        }
     }
     .profile-menu{
+      margin-top: 5%;
         p{
             text-align: center;
             padding: 2% 0;
@@ -43,7 +59,7 @@
             padding: 0;
             float: left;
             img{
-                width: 100%;                
+                width: 100%;
             }
             .texts{
                 padding: 5%;

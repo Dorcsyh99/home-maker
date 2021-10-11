@@ -12,6 +12,8 @@ import { Body,
     UploadedFile,
     Put,
     Res, 
+    Response,
+    StreamableFile
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthService } from './auth.service';
@@ -50,14 +52,20 @@ export class AuthController {
 
     @UseGuards(JwtAuthGuard)
     @Patch('/update/:id')
-    async updateProfile(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto): Promise<User> {
-        return await this.authService.updateProfile(id, updateProfileDto)
+    async updateProfile(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto): Promise<void> {
+        await this.authService.updateProfile(id, updateProfileDto)
     }
 
     @Get('/avatar/:id')
-    async fetchAvatar(@Param('id') avatarId: string, @Res() res) {
-        const data = createReadStream(join(process.cwd(), avatarId));
-        data.pipe(res);
+    async fetchAvatar(@Param('id') avatarId: string, @Response({passthrough: true}) res): Promise<StreamableFile> {
+        console.log("avatarId: ", avatarId);
+        const path = process.cwd() + "\\images\\" + avatarId;
+        console.log(path);
+        const data = createReadStream(path);
+        res.set({
+            'Content-Type': 'image/jpg'
+        })
+        return new StreamableFile(data);
     }
 
     @Post('/avatar/:id')
@@ -70,7 +78,7 @@ export class AuthController {
                   const filename: string = parse(file.originalname).name + uuidv1();
                   const extension: string = parse(file.originalname).ext;
                   
-                  cb(null, `images/${filename}${extension}`);
+                  cb(null, `/${filename}${extension}`);
             }})
         }))
     async uploadAvatar(@Param('id') userId: string, @UploadedFile() file){

@@ -29,6 +29,10 @@ export class User {
   mainField: string;
   @Prop()
   avatar: string;
+  @Prop()
+  updatedHomeCount: number;
+  @Prop()
+  updatedHomes: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

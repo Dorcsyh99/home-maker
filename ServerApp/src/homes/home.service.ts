@@ -6,6 +6,7 @@ import { createHomeDto } from './createHomeDto';
 import { User } from 'src/auth/interfaces/user.interface';
 import { AuthService } from 'src/auth/auth.service';
 import { AuthGuard } from '@nestjs/passport';
+import { parse } from 'path';
 
 @Injectable()
 export class HomeService {
@@ -15,6 +16,7 @@ export class HomeService {
 		console.log("Backend: ", createHomeDto);
 		const uploader: User = await this.authService.getCurrentUser(email);
 		const createdHome = new this.homeModel(createHomeDto);
+		this.authService.updateProfile(uploader.id, {uploadedHomes: createdHome.id, uploadedHomeCount: 1});
 		createdHome.uploader = uploader;
 
 		return createdHome.save();

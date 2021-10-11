@@ -17,13 +17,13 @@
     </div>
     <div class="profile">
       <ul>
-        <li *ngIf="!isLoggedIn">
+        <li *ngIf="!(this.getIsLoggedIn())">
           <a routerLink='signin'>Bejelentkezés</a>
         </li>
-        <li *ngIf="!isLoggedIn">
+        <li *ngIf="!(this.getIsLoggedIn())">
           <a routerLink="signup">Regisztráció</a>
         </li>
-        <li *ngIf="isLoggedIn">
+        <li *ngIf="this.getIsLoggedIn()">
           <button mat-button [matMenuTriggerFor]="menu">Profil</button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item><a routerLink="home/upload">Ingatlan feltöltése</a></button>
@@ -33,7 +33,7 @@
             <button mat-menu-item>Mentett Szakemberek</button>
           </mat-menu>
         </li>
-        <li *ngIf="isLoggedIn">
+        <li *ngIf="this.getIsLoggedIn()">
           <button mat-button (click)="logOut()">Kijelentkezés</button>
         </li>
       </ul>

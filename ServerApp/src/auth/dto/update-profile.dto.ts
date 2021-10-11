@@ -3,26 +3,30 @@ import { IsDate, IsInt, IsPhoneNumber, IsString, Length, MinLength } from "class
 export class UpdateProfileDto {
     @Length(2, 20)
     @IsString()
-    firstName: string;
+    firstName?: string;
 
     @Length(2, 20)
     @IsString()
-    lastName: string;
+    lastName?: string;
 
     @MinLength(0)
-    phone: number;
+    phone?: number;
 
     @MinLength(0)
-    city: string;
+    city?: string;
 
     @MinLength(0)
-    birthday: Date;
+    birthday?: Date;
 
     @MinLength(0)
-    mainField: string;
+    mainField?: string;
 
     @MinLength(0)
-    additionalFields: string[];
+    additionalFields?: string[];
 
-    avatarUrl: string;
+    avatarUrl?: string;
+
+    uploadedHomeCount?: number;
+
+    uploadedHomes?: string[];
 }
