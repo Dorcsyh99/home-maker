@@ -32,7 +32,9 @@ export class User {
   @Prop()
   updatedHomeCount: number;
   @Prop()
-  updatedHomes: string[];
+  updatedHomes: Types.ObjectId[];
+  @Prop()
+  savedHome: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

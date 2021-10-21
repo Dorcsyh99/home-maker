@@ -1,33 +1,12 @@
-<section class="home-section">
-  <div class="left-side">
-    <div class="image-gallery">
-      <img src="../../../assets/img/home-exmpl.jpg">
-    </div>
+<mat-card class="home-container">
+  <h2>{{this.home.city}}<span *ngIf="this.home.city2">, {{this.home.city2}}. Kerület</span></h2>
+  <div class="gallery">
+    <img src="../../../assets/img/home-exmpl.jpg">
   </div>
-  <div class="center-side">
-    <div class="information-box">
-      <div class="headlines">
-        <h1>{{home.city}}</h1>
-        <h2>{{home.address}}</h2>
-      </div>
-      <!-- scrollable, fixed height-->
-      <div class="description">
-        <p>Leírás</p>
-      </div>
-      <!-- little informtion, all details in two columns, with icons in each line-->
-      <div class="details">
-        <ul>
-          <li>{{home.size}} + ikon</li>
-          <li>{{home.price}} + ikon</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="right-side">
-    <div class="uploader-info-card">
-    </div>
-  </div>
-</section>
-<section class="re-agent-section"></section>
-<section class="similar-houses-section"></section>
-<section class="related-experts-section"></section>
+  <mat-card class="address"></mat-card>
+  <mat-card class="size"></mat-card>
+  <mat-card class="building"></mat-card>
+  <mat-card class="booleans"></mat-card> 
+  <mat-card class="uploader-info"></mat-card>
+  <mat-card class="actions"></mat-card>
+</mat-card>

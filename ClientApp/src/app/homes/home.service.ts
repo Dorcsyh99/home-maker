@@ -25,7 +25,9 @@ export class HomeService {
 
   //home/create  - Upload
   create(data: Home){
-    console.log("Data: ", data);
+    console.log(data.image);
+    let formData = new FormData();
+
     return this.httpClient.post("http://localhost:3000/home/create", data).subscribe(res => {
       console.log("visszaértünk a frontendre a dataval");
       this.router.navigate(['/']);

@@ -46,14 +46,14 @@
   </mat-card>
   <mat-card class="my-homes">
     <h3>Feltöltött ingatlanok</h3>
-    <mat-card class="my-home-card">
+    <mat-card class="my-home-card" *ngFor="let h of this.homes">
       <img src="../../../assets/img/lotof-houses.jpg">
       <div class="my-home-text">
-        <p>Budapest, XIX, Petőfi utca 4/A</p>
-        <p><span>Megtekintések:</span>17</p>
-        <p><span>Mentések:</span>3</p>
-        <p><span>Jelenlegi ár:</span>35000000 Ft</p>
-        <p><span>Kedő ár:</span>38000000 Ft</p>
+        <p>{{h.city}}, <span *ngIf="h.city2">{{h.city2}}</span>, {{h.address}}</p>
+        <p><span>Megtekintések: </span>17</p>
+        <p><span>Mentések: </span>3</p>
+        <p><span>Jelenlegi ár: </span>{{h.price}}</p>
+        <p><span>Kedő ár: </span>{{h.price}}</p>
         <button mat-button>Részletek</button>
       </div>
     </mat-card>

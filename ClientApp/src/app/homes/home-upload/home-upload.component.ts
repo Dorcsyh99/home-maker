@@ -8,6 +8,9 @@ import { HomeService } from '../home.service';
 interface Condition {
   value: string;
 }
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-home-upload',
@@ -30,14 +33,18 @@ export class HomeUploadComponent implements OnInit {
     {value: 'Padlófűtés'},
     {value: 'Elektromos'},
   ]
+  imageName: string[] = [];
+  selectedImage!: ImageSnippet;
+  fileSelected: boolean = false;
   step: number = 0;
+  images: File[] = [];
 
   constructor(private homeService: HomeService, private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
 
   ngOnInit(): void {
   }
-
+  //ezt át kell irni FormData-val külön külön - másképp nem működik a fájlfeltöltés
   newHomeForm = this.fb.group({
     city: [''],
     city2: [''],
@@ -58,7 +65,6 @@ export class HomeUploadComponent implements OnInit {
     smoke: [''],
     heating: [''],
     parking: [''],
-    imageUrl: ['']
   });
 
   nextStep(){
@@ -69,15 +75,45 @@ export class HomeUploadComponent implements OnInit {
     this.step = index;
   }
 
+  processFile(event: any){
+    if(event.target.files && event.target.files[0]){
+      this.fileSelected = true;
+      var numberOfImages = event.target.files.length;
+      for(let i = 0; i < numberOfImages; i++){
+        this.imageName.push(event.target.files[i].name);
+        var reader = new FileReader();
 
+        reader.onload = (event:any) => {
+          this.images.push(event.target.result);
+          this.newHomeForm.patchValue({
+            images: this.images
+          });
+        }
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+  }
 
   onSubmit(){
     const val = this.newHomeForm.value;
-    const home: Home = {city: val.city, city2: val.city2, address: val.address, zip: val.zip,
+    const home: Home = {
+      city: val.city, city2: val.city2, address: val.address, zip: val.zip,
       type: val.type, level: val.level, levelsInBuilding: val.levelsInBuilding, price: val.price, size: val.size,
       rooms: val.rooms, year: val.year, condition: val.condition, elevator: val.elevator, attic: val.attic,
-      garden: val.garden, pet: val.pet, smoke: val.smoke, heating: val.heating, parking: val.parking, image: val.imageUrl}
-    this.homeService.create(home);
+      garden: val.garden, pet: val.pet, smoke: val.smoke, heating: val.heating, parking: val.parking,
+      image: []
+    }
+    let formData = new FormData();
+    const blob = new Blob()
+    this.images.forEach(image => {
+      home.image.push(image);
+    })
+    console.log('Image: ', home.image);
+      this.homeService.create(home);
   }
 
 }
+function b64toBlob(image: File): string | Blob {
+  throw new Error('Function not implemented.');
+}
+

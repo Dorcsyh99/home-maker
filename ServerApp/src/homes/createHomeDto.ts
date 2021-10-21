@@ -20,5 +20,6 @@ export class createHomeDto {
     readonly attic: boolean;
     readonly pet: boolean;
     readonly smoke: boolean;
+    readonly image: File[];
 
 }

@@ -10,7 +10,9 @@ import { HomeService } from '../home.service';
 })
 export class HomeGetComponent implements OnInit {
 
-  home: Home = {};
+  home: Home = {
+    image: []
+  };
   isLoadingResult = true;
 
   constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute) { }

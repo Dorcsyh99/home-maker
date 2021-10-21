@@ -12,7 +12,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class HomeAllComponent implements OnInit {
 
   homes: Home[] = [];
-  currentHome: Home = {};
+  currentHome: Home = {
+    image: []
+  };
   currentIndex = -1;
   city: string = '';
 

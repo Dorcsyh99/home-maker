@@ -20,5 +20,5 @@ export class Home {
   elevator?: boolean;
   pet?: boolean;
   smoke?: boolean;
-  image?: string;
+  image: File[] = [];
 }

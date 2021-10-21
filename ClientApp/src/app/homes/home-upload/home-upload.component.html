@@ -172,8 +172,11 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
         <div class="form">
-          <input type="file">
-            <button mat-raised-button type="submit" >Feltöltés</button>
+          <input (change)="processFile($event)" type="file" multiple>
+          <div *ngIf="this.fileSelected" class="image-preview">
+            <img *ngFor="let image of this.imageName" [src]="image" style="width: 150px">
+          </div>
+          <button mat-raised-button type="submit" >Feltöltés</button>
           </div>
     </mat-expansion-panel>
     </form>

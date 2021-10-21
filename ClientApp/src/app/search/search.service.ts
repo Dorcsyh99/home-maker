@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Home } from '../homes/home.model';
+import { HomeSearchQuery } from './queries';
 
 const baseURL = 'http://localhost:3000/search';
 
@@ -23,7 +24,13 @@ export class SearchService {
     return this.httpClient.get(`${baseURL}/${city}`);
   }
 
+  findByQuery(query: HomeSearchQuery): Observable<any>{
+    return this.httpClient.get(`${baseURL}/homes/query`);
+  }
   
+  getHomesFromUser(user: string): Observable<any>{
+    return this.httpClient.get(`${baseURL}/${user}/homes`);
+  }
 
 }
 

@@ -46,6 +46,10 @@ export class Home {
   pet: boolean;
   @Prop()
   smoke: boolean;
+  @Prop()
+  viewCount: number;
+  @Prop()
+  savedCount: number;
 }
 
 

@@ -24,19 +24,39 @@ export class HomePageComponent implements OnInit {
     field: new FormControl('')
   });
 
+
   constructor(private authService: AuthService, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.authService.getToken());
+    
   }
 
 
   onSubmit(){
     const val = this.searchForm.value;
-    console.log(val.city);
+    let minPrice, maxPrice;
+    let query = {
+      city: val.city,
+      minPrice: 0,
+      maxPrice: 999999999,
+      type: val.type
+    }
+    console.log(val);
     if(this.searchForm.invalid){
       console.log("invalid form!");
-    }if(val.city){
+    }if(val.minPrice){
+       query.minPrice = val.minPrice;
+    }if(val.maxPrice){
+      query.maxPrice = val.maxPrice;
+    }
+    this.searchService.findByQuery(query).subscribe(res => {
+      console.log("query: ", query)
+      this.searchService.result = res;
+      console.log(this.searchService.result);
+    })
+    
+
+    /*if(val.city){
       console.log(val.city);
       this.searchService.findByCity(val.city).subscribe(res =>{
         console.log(res[1].city);
@@ -44,7 +64,7 @@ export class HomePageComponent implements OnInit {
         console.log(this.searchService.result[0])
         this.router.navigate(['search']);
       });
-    }
+    }*/
   }
 
 }
