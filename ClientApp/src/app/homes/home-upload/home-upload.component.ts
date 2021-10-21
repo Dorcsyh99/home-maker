@@ -34,7 +34,7 @@ export class HomeUploadComponent implements OnInit {
     {value: 'Elektromos'},
   ]
   imageName: string[] = [];
-  selectedImage!: ImageSnippet;
+  selectedImages: ImageSnippet[] = [];
   fileSelected: boolean = false;
   step: number = 0;
   images: File[] = [];
@@ -44,27 +44,33 @@ export class HomeUploadComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  //ezt át kell irni FormData-val külön külön - másképp nem működik a fájlfeltöltés
-  newHomeForm = this.fb.group({
-    city: [''],
-    city2: [''],
-    address: [''],
-    zip: [''],
-    type: [''],
-    level: [''],
-    levelsInBuilding: [''],
-    price: [''],
-    size: [''],
-    rooms: [''],
-    year: [''],
-    condition: [''],
-    elevator: [''],
-    attic: [''],
-    garden: [''],
-    pet: [''],
-    smoke: [''],
-    heating: [''],
-    parking: [''],
+  homeForm = new FormGroup({
+    address: new FormGroup({
+      city: new FormControl(''),
+      city2: new FormControl(''),
+      address: new FormControl(''),
+      zip: new FormControl(''),
+    }),
+    information: new FormGroup({
+      type: new FormControl(''),
+      size: new FormControl(''),
+      price: new FormControl(''),
+      level: new FormControl(''),
+      levelsInBuilding: new FormControl(''),
+      rooms: new FormControl(''),
+      year: new FormControl(''),
+      condition: new FormControl('')
+    }),
+    booleans: new FormGroup({
+      heating: new FormControl(''),
+      garden: new FormControl(''),
+      attic: new FormControl(''),
+      pet: new FormControl(''),
+      elevator: new FormControl(''),
+      smoke: new FormControl(''),
+      parking: new FormControl(''),
+    }),
+    image: new FormControl('')
   });
 
   nextStep(){
@@ -80,40 +86,40 @@ export class HomeUploadComponent implements OnInit {
       this.fileSelected = true;
       var numberOfImages = event.target.files.length;
       for(let i = 0; i < numberOfImages; i++){
-        this.imageName.push(event.target.files[i].name);
-        var reader = new FileReader();
-
-        reader.onload = (event:any) => {
-          this.images.push(event.target.result);
-          this.newHomeForm.patchValue({
-            images: this.images
-          });
-        }
-        reader.readAsDataURL(event.target.files[i]);
+        this.selectedImages.push(new ImageSnippet(event.target.files[i].name, event.target.files[i]))
       }
+      console.log(this.selectedImages);
     }
+
   }
 
   onSubmit(){
-    const val = this.newHomeForm.value;
-    const home: Home = {
-      city: val.city, city2: val.city2, address: val.address, zip: val.zip,
-      type: val.type, level: val.level, levelsInBuilding: val.levelsInBuilding, price: val.price, size: val.size,
-      rooms: val.rooms, year: val.year, condition: val.condition, elevator: val.elevator, attic: val.attic,
-      garden: val.garden, pet: val.pet, smoke: val.smoke, heating: val.heating, parking: val.parking,
-      image: []
-    }
-    let formData = new FormData();
-    const blob = new Blob()
-    this.images.forEach(image => {
-      home.image.push(image);
-    })
-    console.log('Image: ', home.image);
-      this.homeService.create(home);
+    let val = this.homeForm.;
+    console.log(this.homeForm.get("city"));
+    const newHomeData = new FormData();
+    newHomeData.append('city', val.city);
+    newHomeData.append('city2', val.city2);
+    newHomeData.append('address', val.address);
+    newHomeData.append('zip', val.zip);
+    newHomeData.append('type', val.type);
+    newHomeData.append('level', val.level);
+    newHomeData.append('levelsInBuilding', val.levelsInBuilding);
+    newHomeData.append('price', val.price);
+    newHomeData.append('size', val.size);
+    newHomeData.append('rooms', val.rooms);
+    newHomeData.append('year', val.year);
+    newHomeData.append('condition', val.condition);
+    newHomeData.append('elevator', val.elevator);
+    newHomeData.append('attic', val.attic);
+    newHomeData.append('garden', val.garden);
+    newHomeData.append('pet', val.pet);
+    newHomeData.append('smoke', val.smoke);
+    newHomeData.append('heating', val.heating);
+    newHomeData.append('parking', val.parking);
+    this.selectedImages.forEach(image => {
+      newHomeData.append('images[]', image.file)
+    });
+    this.homeService.create(newHomeData);
   }
-
-}
-function b64toBlob(image: File): string | Blob {
-  throw new Error('Function not implemented.');
 }
 

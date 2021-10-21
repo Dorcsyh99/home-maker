@@ -24,9 +24,8 @@ export class HomeService {
   }
 
   //home/create  - Upload
-  create(data: Home){
-    console.log(data.image);
-    let formData = new FormData();
+  create(data: FormData){
+    console.log("image on st: ", data);
 
     return this.httpClient.post("http://localhost:3000/home/create", data).subscribe(res => {
       console.log("visszaértünk a frontendre a dataval");
