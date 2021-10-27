@@ -12,14 +12,21 @@ import { parse } from 'path';
 export class HomeService {
 	constructor(@InjectModel(Home.name) private homeModel: Model<HomeDocument>, private authService: AuthService) {}
 
-	async addHome(email: string, createHomeDto: createHomeDto): Promise<Home> {
+	async addHome(email: string, createHomeDto: createHomeDto, fileNames: string[]): Promise<void> {
 		console.log("Backend: ", createHomeDto);
 		const uploader: User = await this.authService.getCurrentUser(email);
-		const createdHome = new this.homeModel(createHomeDto);
-		this.authService.updateProfile(uploader.id, {uploadedHomes: createdHome.id, uploadedHomeCount: 1});
-		createdHome.uploader = uploader;
-
-		return createdHome.save();
+		const createdHome = await new this.homeModel(createHomeDto);
+		
+		try {
+			await this.authService.updateProfile(uploader.id, {uploadedHomes: createdHome.id});
+			createdHome.uploader = uploader;
+			fileNames.forEach(name => {
+				createdHome.images.push(name);
+			})
+			createdHome.save();
+		}catch(err){
+			throw(err);
+		} 
 	}
 
 	async findAll(limit?: number) {

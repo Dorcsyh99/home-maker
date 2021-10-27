@@ -50,6 +50,8 @@ export class Home {
   viewCount: number;
   @Prop()
   savedCount: number;
+  @Prop()
+  images: string[];
 }
 
 

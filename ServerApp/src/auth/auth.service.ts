@@ -84,6 +84,7 @@ export class AuthService {
             await this.userModel.updateOne({_id: ObjectID(id)}, {$set: {$inc: {updatedHomeCount: 1}, $push: {updatedHomes: updateQuery.uploadedHomes}}}, {new: false, useFindAndModify: true});;
             console.log("update doneee");
         } catch (error) {
+            console.log("error during updateprofile");
             throw error;
         }
     }

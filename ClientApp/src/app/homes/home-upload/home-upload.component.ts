@@ -38,40 +38,34 @@ export class HomeUploadComponent implements OnInit {
   fileSelected: boolean = false;
   step: number = 0;
   images: File[] = [];
+  homeForm!: FormGroup;
 
   constructor(private homeService: HomeService, private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
 
   ngOnInit(): void {
+    this.homeForm = this.fb.group({
+        city: [''],
+        city2: [''],
+        address: [''],
+        zip: [''],
+        type: [''],
+        size: [''],
+        price: [''],
+        level: [''],
+        levelsInBuilding: [''],
+        rooms: [''],
+        year: [''],
+        condition: [''],
+        heating: [''],
+        garden: [''],
+        attic: [''],
+        pet: [''],
+        smoke: [''],
+        elevator: [''],
+        parking: ['']
+    });
   }
-  homeForm = new FormGroup({
-    address: new FormGroup({
-      city: new FormControl(''),
-      city2: new FormControl(''),
-      address: new FormControl(''),
-      zip: new FormControl(''),
-    }),
-    information: new FormGroup({
-      type: new FormControl(''),
-      size: new FormControl(''),
-      price: new FormControl(''),
-      level: new FormControl(''),
-      levelsInBuilding: new FormControl(''),
-      rooms: new FormControl(''),
-      year: new FormControl(''),
-      condition: new FormControl('')
-    }),
-    booleans: new FormGroup({
-      heating: new FormControl(''),
-      garden: new FormControl(''),
-      attic: new FormControl(''),
-      pet: new FormControl(''),
-      elevator: new FormControl(''),
-      smoke: new FormControl(''),
-      parking: new FormControl(''),
-    }),
-    image: new FormControl('')
-  });
 
   nextStep(){
     this.step++;
@@ -94,9 +88,10 @@ export class HomeUploadComponent implements OnInit {
   }
 
   onSubmit(){
-    let val = this.homeForm.;
-    console.log(this.homeForm.get("city"));
+    let val = this.homeForm.value;
+    console.log(val.city);
     const newHomeData = new FormData();
+    console.log("imagesnipepts: ", this.selectedImages);
     newHomeData.append('city', val.city);
     newHomeData.append('city2', val.city2);
     newHomeData.append('address', val.address);
@@ -116,9 +111,9 @@ export class HomeUploadComponent implements OnInit {
     newHomeData.append('smoke', val.smoke);
     newHomeData.append('heating', val.heating);
     newHomeData.append('parking', val.parking);
-    this.selectedImages.forEach(image => {
-      newHomeData.append('images[]', image.file)
-    });
+    for(let i = 0; i < this.selectedImages.length; i++){
+      newHomeData.append('images[]', this.selectedImages[i].file);
+    }
     this.homeService.create(newHomeData);
   }
 }
