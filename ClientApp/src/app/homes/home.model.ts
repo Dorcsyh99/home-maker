@@ -21,4 +21,6 @@ export class Home {
   pet?: boolean;
   smoke?: boolean;
   image: File[] = [];
+  viewCount?: number;
+  savedCount?: number;
 }

@@ -81,10 +81,20 @@ export class HomeUploadComponent implements OnInit {
       var numberOfImages = event.target.files.length;
       for(let i = 0; i < numberOfImages; i++){
         this.selectedImages.push(new ImageSnippet(event.target.files[i].name, event.target.files[i]))
+        const reader = new FileReader();
+        reader.onload = (event: any) => {
+          this.imageName.push(event.target.result);
+        }
+        reader.readAsDataURL(event.target.files[i]);
       }
       console.log(this.selectedImages);
     }
 
+  }
+
+  removeImage(url: any){
+    this.imageName = this.imageName.filter(img => (img != url));
+    this.selectedImages.filter(img => (img != url));
   }
 
   onSubmit(){
